@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="image_urls">
+        <item>https://habrastorage.org/files/e88/e12/071/e88e120716e046c9ad046935160da63f.jpg</item>
+        <item>https://habrastorage.org/files/db8/c5b/f62/db8c5bf621ef484cbde908f1231c6df1.jpg</item>
+        <item>https://habrastorage.org/files/f98/824/9ba/f988249ba0bb4c80b038ec69419cf922.jpg</item>
+        <item>https://habrastorage.org/files/dde/c29/ca2/ddec29ca2ece4325a573e753db6878ac.jpg</item>
+        <item>https://habrastorage.org/files/4b9/adb/f51/4b9adbf51f2a4b27b7636502c2bb418c.jpg</item>
+        <item>https://habrastorage.org/files/6b3/1fa/e74/6b31fae740f04ed5ae8c26745a628296.jpg</item>
+        <item>https://habrastorage.org/files/5f8/bcc/209/5f8bcc20951647b2a987b5f39e47e819.jpg</item>
+        <item>https://habrastorage.org/files/0a3/720/d25/0a3720d25ea44852a44388bb2aad7455.jpg</item>
+        <item>https://habrastorage.org/files/474/be2/316/474be23166a041dbbfa4d3945bcc427c.jpg</item>
+        <item>https://habrastorage.org/files/9f3/4ab/bc4/9f34abbc414c484e8da5ad0d83cac872.jpg</item>
+        <item>https://habrastorage.org/files/aa2/349/2d6/aa23492d6492437d9ee36288a129b6c1.jpg</item>
+        <item>https://habrastorage.org/files/3ef/bd7/cc7/3efbd7cc78c2497487269f1a236403b4.jpg</item>
+    </string-array>
+</resources>
