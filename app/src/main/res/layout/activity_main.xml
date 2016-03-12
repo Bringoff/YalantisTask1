@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
+    android:onClick="onEveryClick"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,56 +16,78 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="onEveryClick"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/title_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_vertical_margin"
             android:layout_marginTop="@dimen/default_vertical_margin"
+            android:onClick="onEveryClick"
             android:text="@string/utility_sector"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/title_text_size"/>
 
         <TextView
+            android:id="@+id/tag_text_view"
             style="@style/Tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onEveryClick"
             android:text="@string/in_work"/>
 
-        <include layout="@layout/divider"/>
+        <include
+            layout="@layout/divider"
+            android:onClick="onEveryClick"
+            />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
+            android:id="@+id/created_captionvalue_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onEveryClick"
             app:caption="@string/created"
             app:value="@string/first_stub_date"/>
 
-        <include layout="@layout/divider"/>
+        <include
+            layout="@layout/divider"
+            android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
+            android:id="@+id/registered_captionvalue_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onEveryClick"
             app:caption="@string/registered"
             app:value="@string/second_stub_date"/>
 
-        <include layout="@layout/divider"/>
+        <include
+            layout="@layout/divider"
+            android:onClick="onEveryClick"
+            />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
+            android:id="@+id/solve_to_captionvalue_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onEveryClick"
             app:caption="@string/solve_till"
             app:value="@string/third_stub_date"/>
 
         <include layout="@layout/divider"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
+            android:id="@+id/responsible_captionvalue_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:caption="@string/responsible"
             app:value="@string/responsible_stub"/>
 
-        <include layout="@layout/divider"/>
+        <include
+            layout="@layout/divider"
+            android:onClick="onEveryClick"/>
 
         <TextView
             android:id="@+id/detailed_description_text_view"
@@ -72,11 +95,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_vertical_margin"
             android:layout_marginTop="@dimen/default_vertical_margin"
+            android:onClick="onEveryClick"
             android:text="@string/description_stub"
             android:textColor="?android:attr/textColorPrimary"/>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/images_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onEveryClick"/>
     </LinearLayout>
 </ScrollView>

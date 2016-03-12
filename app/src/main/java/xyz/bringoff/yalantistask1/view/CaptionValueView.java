@@ -49,7 +49,7 @@ public class CaptionValueView extends LinearLayout {
 
     private void initViews(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.titlevalue_view, this);
+        inflater.inflate(R.layout.captionvalue_view, this);
     }
 
     @Override

@@ -11,4 +11,6 @@
     <string name="third_stub_date">February 29, 2016</string>
     <string name="responsible_stub">Dnipropetrovskiy MVK</string>
     <string name="description_stub">Opened hatch (near by the billboard), the area of 18 and 19 trams turn to the Mir avenue from the Donetsk roadway</string>
+    <string name="image_view_content_description">Photo of incident</string>
+    <string name="occasion_code_stub" translatable="false">CE-1257218</string>
 </resources>

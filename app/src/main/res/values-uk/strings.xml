@@ -11,4 +11,5 @@
     <string name="third_stub_date">29 лютого 2016</string>
     <string name="responsible_stub">Дніпропетровський МВК</string>
     <string name="description_stub">Відкритий люк (біля рекламного щита), район повороту 18 та 19 трамваїв на проспект Миру з Донецького шосе</string>
+    <string name="image_view_content_description">Фото події</string>
 </resources>
