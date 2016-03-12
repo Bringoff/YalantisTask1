@@ -40,8 +40,7 @@
 
         <include
             layout="@layout/divider"
-            android:onClick="onEveryClick"
-            />
+            android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/created_captionvalue_view"
@@ -65,8 +64,7 @@
 
         <include
             layout="@layout/divider"
-            android:onClick="onEveryClick"
-            />
+            android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/solve_to_captionvalue_view"
