@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">YalantisTask1</string>
+    <string name="in_work">In work</string>
+    <string name="utility_sector">Utility Sector</string>
+    <string name="created">Created</string>
+    <string name="registered">Registered</string>
+    <string name="solve_till">Solve until</string>
+    <string name="responsible">Responsible</string>
+    <string name="first_stub_date">February 25, 2016</string>
+    <string name="second_stub_date">February 26, 2016</string>
+    <string name="third_stub_date">February 29, 2016</string>
+    <string name="responsible_stub">Dnipropetrovskiy MVK</string>
+    <string name="description_stub">Opened hatch (near by the billboard), the area of 18 and 19 trams turn to the Mir avenue from the Donetsk roadway</string>
 </resources>

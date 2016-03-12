@@ -1,11 +1,21 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:divider">@color/colorDivider</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+    </style>
+
+    <style name="Tag">
+        <item name="android:paddingLeft">@dimen/tag_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/tag_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/tag_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/tag_vertical_padding</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/tag_background</item>
     </style>
 
 </resources>
