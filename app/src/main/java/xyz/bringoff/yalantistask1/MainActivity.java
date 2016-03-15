@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     private List<String> mImageUrls;
 
     @Override

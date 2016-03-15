@@ -35,8 +35,11 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAd
     @Override
     public void onBindViewHolder(Holder holder, int position) {
         String url = mUrls.get(position);
-        Glide.with(mContext).load(url).placeholder(R.mipmap.ic_launcher).into(holder.mImageView);
-
+        Glide.with(mContext)
+                .load(url)
+                .placeholder(R.mipmap.ic_launcher)
+                .centerCrop()
+                .into(holder.mImageView);
     }
 
     protected static class Holder extends RecyclerView.ViewHolder {

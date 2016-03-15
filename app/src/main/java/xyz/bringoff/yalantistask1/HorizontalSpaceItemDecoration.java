@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 public class HorizontalSpaceItemDecoration extends RecyclerView.ItemDecoration {
+
     private final int mSpaceSize;
 
     public HorizontalSpaceItemDecoration(int spaceSize) {

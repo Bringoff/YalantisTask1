@@ -10,6 +10,7 @@ import android.widget.TextView;
 import xyz.bringoff.yalantistask1.R;
 
 public class CaptionValueView extends LinearLayout {
+
     private TextView mTitleTextView;
     private TextView mValueTextView;
 
@@ -56,24 +57,16 @@ public class CaptionValueView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mTitleTextView = (TextView) this.findViewById(R.id.title_text_view);
-        mValueTextView = (TextView) this.findViewById(R.id.value_text_view);
+        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
+        mValueTextView = (TextView) findViewById(R.id.value_text_view);
 
         setCaption(mCaption);
         setValue(mValue);
     }
 
-    public String getCaption() {
-        return mCaption;
-    }
-
     public void setCaption(String text) {
         mCaption = text;
         mTitleTextView.setText(mCaption);
-    }
-
-    public String getValue() {
-        return mValue;
     }
 
     public void setValue(String text) {
