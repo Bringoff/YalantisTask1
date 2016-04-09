@@ -7,4 +7,6 @@
     <color name="colorDivider">#C6C6C6</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#878787</color>
+
+    <color name="colorLike">#CCCCCC</color>
 </resources>

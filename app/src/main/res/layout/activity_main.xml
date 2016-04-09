@@ -39,7 +39,7 @@
             android:text="@string/in_work"/>
 
         <include
-            layout="@layout/divider"
+            layout="@layout/horizontal_divider"
             android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
@@ -51,7 +51,7 @@
             app:value="@string/first_stub_date"/>
 
         <include
-            layout="@layout/divider"
+            layout="@layout/horizontal_divider"
             android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
@@ -63,7 +63,7 @@
             app:value="@string/second_stub_date"/>
 
         <include
-            layout="@layout/divider"
+            layout="@layout/horizontal_divider"
             android:onClick="onEveryClick"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
@@ -74,7 +74,7 @@
             app:caption="@string/solve_till"
             app:value="@string/third_stub_date"/>
 
-        <include layout="@layout/divider"/>
+        <include layout="@layout/horizontal_divider"/>
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/responsible_captionvalue_view"
@@ -84,7 +84,7 @@
             app:value="@string/responsible_stub"/>
 
         <include
-            layout="@layout/divider"
+            layout="@layout/horizontal_divider"
             android:onClick="onEveryClick"/>
 
         <TextView
