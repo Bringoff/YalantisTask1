@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1;
+package xyz.bringoff.yalantistask1.utils.recyclerutils;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;

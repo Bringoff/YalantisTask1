@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1;
+package xyz.bringoff.yalantistask1.details;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import xyz.bringoff.yalantistask1.R;
 
 public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAdapter.Holder> {
 

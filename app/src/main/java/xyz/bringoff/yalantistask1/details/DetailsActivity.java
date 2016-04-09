@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1;
+package xyz.bringoff.yalantistask1.details;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+import xyz.bringoff.yalantistask1.R;
+import xyz.bringoff.yalantistask1.utils.recyclerutils.HorizontalSpaceItemDecoration;
+
+public class DetailsActivity extends AppCompatActivity {
 
     private List<String> mImageUrls;
 
