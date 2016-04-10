@@ -9,6 +9,11 @@
         <item name="android:textColorSecondary">@color/colorTextSecondary</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="Tag">
         <item name="android:paddingLeft">@dimen/tag_horizontal_padding</item>
         <item name="android:paddingRight">@dimen/tag_horizontal_padding</item>
