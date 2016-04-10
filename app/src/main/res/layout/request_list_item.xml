@@ -27,12 +27,12 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@id/divider"
+            android:layout_toLeftOf="@+id/divider"
             android:layout_toStartOf="@id/divider"
             tools:text="2"/>
 
         <View
-            android:id="@+id/divider"
+            android:id="@id/divider"
             android:layout_width="@dimen/divider_size"
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/request_divider_right_margin"

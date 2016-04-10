@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import xyz.bringoff.yalantistask1.R;
+import xyz.bringoff.yalantistask1.requests.fragment.RecyclerRequestListFragment;
 
 public class RequestListActivity extends AppCompatActivity {
 
@@ -11,5 +12,9 @@ public class RequestListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_list);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, RecyclerRequestListFragment.newInstance())
+                .commit();
     }
 }
