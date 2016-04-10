@@ -13,17 +13,17 @@ import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestRecyclerAdapter;
 import xyz.bringoff.yalantistask1.utils.DummyDataSources;
 
-public class RecyclerRequestListFragment extends BaseRequestListFragment {
+public class RequestRecyclerFragment extends BaseRequestListFragment {
 
     private RecyclerView mRequestsRecyclerView;
     private RequestRecyclerAdapter mAdapter;
 
-    public RecyclerRequestListFragment() {
+    public RequestRecyclerFragment() {
         // Required empty public constructor
     }
 
-    public static RecyclerRequestListFragment newInstance() {
-        return new RecyclerRequestListFragment();
+    public static RequestRecyclerFragment newInstance() {
+        return new RequestRecyclerFragment();
     }
 
     @Override

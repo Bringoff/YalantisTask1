@@ -7,11 +7,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".requests.fragment.RequestRecyclerFragment">
+    tools:context="xyz.bringoff.yalantistask1.requests.fragment.RequestListFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/request_recycler_view"
+    <ListView
+        android:id="@+id/request_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="@null"
         tools:listitem="@layout/request_list_item"/>
+
 </FrameLayout>
