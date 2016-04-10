@@ -15,4 +15,6 @@
     <dimen name="request_title_right_margin">16dp</dimen>
     <dimen name="request_date_top_margin">8dp</dimen>
     <dimen name="request_list_item_height">128dp</dimen>
+    <dimen name="request_icon_width">80dp</dimen>
+    <dimen name="request_icon_vertical_margin">20dp</dimen>
 </resources>
