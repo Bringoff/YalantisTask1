@@ -19,6 +19,7 @@
     <string name="all_requests">All requests</string>
     <string name="done">Done</string>
     <string name="waiting">Waiting</string>
+    <string name="filter">Filter</string>
 
     <plurals name="days_plural">
         <item quantity="one">day</item>

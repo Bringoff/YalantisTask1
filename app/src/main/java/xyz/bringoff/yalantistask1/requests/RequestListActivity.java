@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestsPagerAdapter;
@@ -29,5 +30,11 @@ public class RequestListActivity extends AppCompatActivity {
         mRequestFragmentsViewPager.setAdapter(mPagerAdapter);
         mTabLayout = (TabLayout) findViewById(R.id.requests_tab_layout);
         mTabLayout.setupWithViewPager(mRequestFragmentsViewPager);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.requests_menu, menu);
+        return true;
     }
 }

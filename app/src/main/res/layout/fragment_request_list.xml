@@ -6,7 +6,6 @@
     android:background="@null"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="xyz.bringoff.yalantistask1.requests.fragment.RequestListFragment">
 
     <ListView
