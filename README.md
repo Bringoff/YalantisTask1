@@ -1,7 +1,37 @@
-Yalantis Android Internship. Task 1
-===================================
+Android internship tasks
+========================
 
-***Android internship tasks***
+***Yalantis Android Internship. Task 2***
+
+Create screen with controls
+
+<img src="./screenshots/example_task2_drawer.png" width="300">
+<img src="./screenshots/example_task2_list.png" width="300">
+
+It should be 3 tabs and Navigation drawer with test data (10 items). 
+
+***Requirments:***
+
+* Put dimens and text sizes into res folder. 
+* Use [google code style](https://source.android.com/source/code-style.html)
+* For first and second tab use recyclerview 
+* On list item click, open first task screen
+* For third tab use listview 
+* When user scrolls list, floating action button should hide with animation 
+* Use styles 
+* Minimal SDK version = 16
+* Only portrait orientation
+
+Please don’t commit .idea directory. Use master branch as default.
+
+______
+
+My result:
+==========
+
+<img src="./screenshots/device_task2_drawer_eng.png" width="300"> <img src="./screenshots/device_task2_list_eng.png" width="300">
+
+***Yalantis Android Internship. Task 1***
 
 Create screen with controls
 
