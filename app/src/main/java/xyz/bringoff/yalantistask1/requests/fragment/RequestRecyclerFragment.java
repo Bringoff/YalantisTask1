@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import xyz.bringoff.yalantistask1.R;
+import xyz.bringoff.yalantistask1.details.DetailsActivity;
+import xyz.bringoff.yalantistask1.requests.adapter.OnItemClickListener;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestRecyclerAdapter;
 import xyz.bringoff.yalantistask1.utils.DummyDataSources;
 
-public class RequestRecyclerFragment extends BaseRequestListFragment {
+public class RequestRecyclerFragment extends BaseRequestListFragment implements OnItemClickListener {
 
     private RecyclerView mRequestsRecyclerView;
     private RequestRecyclerAdapter mAdapter;
@@ -37,7 +39,7 @@ public class RequestRecyclerFragment extends BaseRequestListFragment {
         View view = inflater.inflate(R.layout.fragment_recycler_request_list, container, false);
         mRequestsRecyclerView = (RecyclerView) view.findViewById(R.id.request_recycler_view);
         mRequestsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new RequestRecyclerAdapter(getActivity());
+        mAdapter = new RequestRecyclerAdapter(getActivity(), this);
         mRequestsRecyclerView.setAdapter(mAdapter);
         return view;
     }
@@ -52,5 +54,10 @@ public class RequestRecyclerFragment extends BaseRequestListFragment {
     @Override
     protected void notifyAdapterAboutRequests() {
         mAdapter.setRequests(requests);
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        startActivity(DetailsActivity.getStartIntent(getActivity()));
     }
 }

@@ -18,9 +18,11 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
 
     private Context mContext;
     private List<Request> mRequests;
+    private OnItemClickListener mItemClickListener;
 
-    public RequestRecyclerAdapter(Context context) {
+    public RequestRecyclerAdapter(Context context, OnItemClickListener clickListener) {
         mContext = context;
+        mItemClickListener = clickListener;
     }
 
     @Override
@@ -57,6 +59,12 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mItemClickListener.onItemClicked(mRequests.indexOf(mRequest));
+                }
+            });
             mRequestTypeImageView = (ImageView) itemView.findViewById(R.id.request_type_icon_image_view);
             mRequestTypeTextView = (TextView) itemView.findViewById(R.id.request_type_text_view);
             mRequestAddressTextView = (TextView) itemView.findViewById(R.id.request_address_text_view);
@@ -107,5 +115,4 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
             mLikesTextView.setText(String.valueOf(likes));
         }
     }
-
 }

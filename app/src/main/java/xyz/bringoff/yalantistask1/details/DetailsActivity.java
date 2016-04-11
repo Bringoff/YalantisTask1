@@ -1,5 +1,7 @@
 package xyz.bringoff.yalantistask1.details;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +20,10 @@ import xyz.bringoff.yalantistask1.utils.recyclerutils.HorizontalSpaceItemDecorat
 public class DetailsActivity extends AppCompatActivity {
 
     private List<String> mImageUrls;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, DetailsActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
