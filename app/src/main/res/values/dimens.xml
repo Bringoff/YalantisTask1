@@ -23,4 +23,5 @@
     <dimen name="drawer_logo_left_padding">16dp</dimen>
     <dimen name="drawer_logo_top_padding">74dp</dimen>
     <dimen name="drawer_logo_bottom_padding">16dp</dimen>
+    <dimen name="list_item_bottom_margin">8dp</dimen>
 </resources>
