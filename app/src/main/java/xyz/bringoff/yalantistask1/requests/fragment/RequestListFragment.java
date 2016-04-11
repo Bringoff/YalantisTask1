@@ -33,6 +33,7 @@ public class RequestListFragment extends BaseRequestListFragment {
         mAdapter = new RequestListAdapter(getActivity());
         setRequests(DummyDataSources.getDummyRequests());
         mRequestListView.setAdapter(mAdapter);
+
         return view;
     }
 
