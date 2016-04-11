@@ -83,6 +83,9 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
         }
 
         private void setRequestType(Request.RequestType type) {
+            // As I don't have icons, I set a default one for now
+            mRequestTypeImageView.setImageResource(R.drawable.ic_doc);
+
             switch (type) {
                 case BUILDING:
                     mRequestTypeTextView.setText(mContext.getString(R.string.landscaping_building));
