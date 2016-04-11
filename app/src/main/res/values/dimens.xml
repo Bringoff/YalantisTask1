@@ -19,4 +19,8 @@
     <dimen name="request_icon_width">80dp</dimen>
     <dimen name="request_icon_vertical_margin">20dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="drawer_logo_text_size">28dp</dimen>
+    <dimen name="drawer_logo_left_padding">16dp</dimen>
+    <dimen name="drawer_logo_top_padding">48dp</dimen>
+    <dimen name="drawer_logo_bottom_padding">16dp</dimen>
 </resources>

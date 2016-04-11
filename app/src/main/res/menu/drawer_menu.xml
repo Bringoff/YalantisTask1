@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/action_all_requests"
+            android:checked="true"
+            android:icon="@drawable/ic_all_requests"
+            android:title="@string/all_requests"/>
+
+        <item
+            android:id="@+id/action_requests_map"
+            android:icon="@drawable/ic_map"
+            android:title="@string/requests_on_map"/>
+    </group>
+
+    <group
+        android:id="@+id/user_operations_group"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/action_login"
+            android:title="@string/login_into_account"/>
+    </group>
+
+</menu>

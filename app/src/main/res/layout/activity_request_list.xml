@@ -1,52 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/shadow_background"
-    tools:context="xyz.bringoff.yalantistask1.requests.RequestListActivity">
+    android:fitsSystemWindows="true"
+    tools:menu="@menu/drawer_menu">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white"/>
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/requests_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="@android:color/white"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/tabTextPrimary"
-            app:tabTextColor="@color/tabTextSecondary"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/requests_view_pager"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:background="@drawable/shadow_background"
+        tools:context="xyz.bringoff.yalantistask1.requests.RequestListActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:titleTextColor="@android:color/white"/>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/requests_tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@android:color/white"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/tabTextPrimary"
+                app:tabTextColor="@color/tabTextSecondary"/>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/requests_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:fabSize="normal"
+            app:layout_anchor="@+id/requests_view_pager"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_behavior="xyz.bringoff.yalantistask1.utils.FabHidingBehavior"
+            app:srcCompat="@drawable/ic_plus"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:fabSize="normal"
-        app:layout_anchor="@+id/requests_view_pager"
-        app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="xyz.bringoff.yalantistask1.utils.FabHidingBehavior"
-        app:srcCompat="@drawable/ic_plus"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/drawer_menu">
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/authors_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:clickable="true"
+            android:linksClickable="true"
+            android:text="@string/authors"/>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

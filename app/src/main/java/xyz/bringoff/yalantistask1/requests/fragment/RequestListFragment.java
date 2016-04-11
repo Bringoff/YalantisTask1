@@ -3,6 +3,7 @@ package xyz.bringoff.yalantistask1.requests.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class RequestListFragment extends BaseRequestListFragment {
         mAdapter = new RequestListAdapter(getActivity());
         setRequests(DummyDataSources.getDummyRequests());
         mRequestListView.setAdapter(mAdapter);
-
+        ViewCompat.setNestedScrollingEnabled(mRequestListView, true);
         return view;
     }
 

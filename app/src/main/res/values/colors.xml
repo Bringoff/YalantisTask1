@@ -11,4 +11,5 @@
     <color name="colorLike">#CCCCCC</color>
     <color name="tabTextPrimary">@android:color/white</color>
     <color name="tabTextSecondary">#CCD7E6</color>
+    <color name="colorWhiteTransparent">#b3ffffff</color>
 </resources>
