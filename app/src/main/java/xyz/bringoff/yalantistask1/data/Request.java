@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Request {
 
-    private String mId;
+    private final String mId;
     private RequestType mRequestType;
     private String mAddress;
     private String mStatus;

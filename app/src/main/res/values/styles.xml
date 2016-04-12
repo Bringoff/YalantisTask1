@@ -49,11 +49,7 @@
         <item name="android:textSize">@dimen/drawer_logo_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorWhiteTransparent</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@color/colorPrimary</item>
         <item name="android:paddingLeft">@dimen/drawer_logo_left_padding</item>
-        <item name="android:paddingTop">@dimen/drawer_logo_top_padding</item>
-        <item name="android:paddingBottom">@dimen/drawer_logo_bottom_padding</item>
         <item name="android:clickable">true</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>

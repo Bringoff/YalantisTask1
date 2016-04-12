@@ -18,14 +18,6 @@ public class FabHidingBehavior extends Behavior {
     public FabHidingBehavior(Context context, AttributeSet attrs) {
     }
 
-    public static boolean isReactOnScroll() {
-        return sReactOnScroll;
-    }
-
-    public static void setReactOnScroll(boolean reactOnScroll) {
-        sReactOnScroll = reactOnScroll;
-    }
-
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child,
                                        View directTargetChild, View target, int nestedScrollAxes) {
