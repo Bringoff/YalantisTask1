@@ -57,7 +57,7 @@ public class CaptionValueView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
+        mTitleTextView = (TextView) findViewById(R.id.type_text_view);
         mValueTextView = (TextView) findViewById(R.id.value_text_view);
 
         setCaption(mCaption);

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.R;
@@ -23,6 +24,7 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
     public RequestRecyclerAdapter(Context context, OnItemClickListener clickListener) {
         mContext = context;
         mItemClickListener = clickListener;
+        mRequests = new ArrayList<>();
     }
 
     @Override

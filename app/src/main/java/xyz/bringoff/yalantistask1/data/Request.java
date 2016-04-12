@@ -1,22 +1,41 @@
 package xyz.bringoff.yalantistask1.data;
 
+import java.util.UUID;
+
 public class Request {
 
+    private String mId;
     private RequestType mRequestType;
     private String mAddress;
+    private String mStatus;
     private long mCreatedDate;
+    private long mRegisteredDate;
     private long mSolveToDate;
+    private String mResponsible;
+    private String mDescription;
     private int mLikes;
 
     public Request() {
+        mId = UUID.randomUUID().toString();
     }
 
-    public Request(RequestType requestType, String address, long createdDate, long solveToDate, int likes) {
+    public Request(RequestType requestType, String address, String status, long createdDate,
+                   long registeredDate, long solveToDate, String responsible,
+                   String description, int likes) {
+        this();
         mRequestType = requestType;
         mAddress = address;
+        mStatus = status;
         mCreatedDate = createdDate;
+        mRegisteredDate = registeredDate;
         mSolveToDate = solveToDate;
+        mResponsible = responsible;
+        mDescription = description;
         mLikes = likes;
+    }
+
+    public String getId() {
+        return mId;
     }
 
     public RequestType getRequestType() {
@@ -59,40 +78,36 @@ public class Request {
         mLikes = likes;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Request)) return false;
-
-        Request request = (Request) o;
-
-        if (mCreatedDate != request.mCreatedDate) return false;
-        if (mSolveToDate != request.mSolveToDate) return false;
-        if (mLikes != request.mLikes) return false;
-        if (mRequestType != request.mRequestType) return false;
-        return mAddress != null ? mAddress.equals(request.mAddress) : request.mAddress == null;
-
+    public long getRegisteredDate() {
+        return mRegisteredDate;
     }
 
-    @Override
-    public int hashCode() {
-        int result = mRequestType != null ? mRequestType.hashCode() : 0;
-        result = 31 * result + (mAddress != null ? mAddress.hashCode() : 0);
-        result = 31 * result + (int) (mCreatedDate ^ (mCreatedDate >>> 32));
-        result = 31 * result + (int) (mSolveToDate ^ (mSolveToDate >>> 32));
-        result = 31 * result + mLikes;
-        return result;
+    public void setRegisteredDate(long registeredDate) {
+        mRegisteredDate = registeredDate;
     }
 
-    @Override
-    public String toString() {
-        return "Request{" +
-                "mRequestType=" + mRequestType +
-                ", mAddress='" + mAddress + '\'' +
-                ", mCreatedDate=" + mCreatedDate +
-                ", mSolveToDate=" + mSolveToDate +
-                ", mLikes=" + mLikes +
-                '}';
+    public String getResponsible() {
+        return mResponsible;
+    }
+
+    public void setResponsible(String responsible) {
+        mResponsible = responsible;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
+    }
+
+    public String getStatus() {
+        return mStatus;
+    }
+
+    public void setStatus(String status) {
+        mStatus = status;
     }
 
     public enum RequestType {

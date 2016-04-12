@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.R;
@@ -21,6 +22,7 @@ public class RequestListAdapter extends BaseAdapter {
 
     public RequestListAdapter(Context context) {
         mContext = context;
+        mRequests = new ArrayList<>();
     }
 
     public void setRequests(List<Request> requests) {

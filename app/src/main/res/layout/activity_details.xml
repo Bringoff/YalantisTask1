@@ -20,7 +20,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title_text_view"
+            android:id="@+id/type_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_vertical_margin"
@@ -31,7 +31,7 @@
             android:textSize="@dimen/title_text_size"/>
 
         <TextView
-            android:id="@+id/tag_text_view"
+            android:id="@+id/status_text_view"
             style="@style/Tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
