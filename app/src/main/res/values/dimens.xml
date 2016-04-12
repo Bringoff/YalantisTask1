@@ -1,6 +1,6 @@
 <resources>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_vertical_margin">8dp</dimen>
     <dimen name="tag_corner_radius">20dp</dimen>
     <dimen name="tag_horizontal_padding">16dp</dimen>
     <dimen name="tag_vertical_padding">6dp</dimen>
@@ -11,17 +11,23 @@
     <dimen name="card_corner_radius">8dp</dimen>
     <dimen name="like_drawable_padding">8dp</dimen>
     <dimen name="like_padding">16dp</dimen>
-    <dimen name="request_divider_right_margin">24dp</dimen>
+    <dimen name="like_text_size">16sp</dimen>
+
+    <!-- Request listitem -->
+    <dimen name="request_list_item_height">126dp</dimen>
+    <dimen name="request_content_margin">16dp</dimen>
     <dimen name="request_address_margin_top">20dp</dimen>
-    <dimen name="request_title_right_margin">16dp</dimen>
     <dimen name="request_date_top_margin">8dp</dimen>
-    <dimen name="request_list_item_height">128dp</dimen>
     <dimen name="request_icon_width">80dp</dimen>
     <dimen name="request_icon_vertical_margin">20dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="fab_margin">24dp</dimen>
     <dimen name="drawer_logo_text_size">28dp</dimen>
     <dimen name="drawer_logo_left_padding">16dp</dimen>
     <dimen name="drawer_logo_top_padding">74dp</dimen>
     <dimen name="drawer_logo_bottom_padding">16dp</dimen>
     <dimen name="list_item_bottom_margin">4dp</dimen>
+    <dimen name="request_icon_height">40dp</dimen>
+    <dimen name="request_address_vertical_margin">6dp</dimen>
+    <dimen name="tab_indicator_height">4dp</dimen>
 </resources>

@@ -29,13 +29,9 @@
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/requests_tab_layout"
+                style="@style/TabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/white"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/tabTextPrimary"
-                app:tabTextColor="@color/tabTextSecondary"/>
+                android:layout_height="wrap_content"/>
 
         </android.support.design.widget.AppBarLayout>
 

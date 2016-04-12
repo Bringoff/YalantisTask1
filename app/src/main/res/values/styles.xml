@@ -27,12 +27,9 @@
         <item name="android:drawableLeft">@drawable/ic_like</item>
         <item name="android:drawablePadding">@dimen/like_drawable_padding</item>
         <item name="android:drawableStart">@drawable/ic_like</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingBottom">@dimen/like_padding</item>
-        <item name="android:paddingLeft">@dimen/like_padding</item>
-        <item name="android:paddingRight">@dimen/like_padding</item>
-        <item name="android:paddingTop">@dimen/like_padding</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/colorLike</item>
+        <item name="android:textSize">@dimen/like_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -44,7 +41,6 @@
     </style>
 
     <style name="RequestDateTextView">
-        <item name="android:layout_marginTop">@dimen/request_date_top_margin</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
@@ -60,5 +56,14 @@
         <item name="android:paddingBottom">@dimen/drawer_logo_bottom_padding</item>
         <item name="android:clickable">true</item>
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabIndicatorHeight">@dimen/tab_indicator_height</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabSelectedTextColor">@color/tabTextPrimary</item>
+        <item name="tabTextColor">@color/tabTextSecondary</item>
     </style>
 </resources>
