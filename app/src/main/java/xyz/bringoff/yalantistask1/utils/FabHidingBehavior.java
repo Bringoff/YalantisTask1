@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton.Behavior;
 import android.util.AttributeSet;
 import android.view.View;
 
+@SuppressWarnings("unused")
 public class FabHidingBehavior extends Behavior {
 
     private static boolean sReactOnScroll;
