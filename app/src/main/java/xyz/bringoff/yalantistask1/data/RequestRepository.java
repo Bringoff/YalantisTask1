@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
 public class RequestRepository implements RequestDataSourceInterface {
 
@@ -30,14 +29,14 @@ public class RequestRepository implements RequestDataSourceInterface {
         for (int i = 0; i < DUMMY_DATA_COUNT; i++) {
             int typeIndex = random.nextInt(Request.RequestType.values().length);
             Request.RequestType type = Request.RequestType.values()[typeIndex];
-            String address = UUID.randomUUID().toString();
-            String status = UUID.randomUUID().toString();
+            String address = "Some address";
+            String status = "Some status";
             long created = System.currentTimeMillis() - random.nextInt(10) * 86400000;
             long registered = created + random.nextInt(10) * 86400000;
             long solveTo = registered + random.nextInt(10) * 86400000;
             int likes = random.nextInt(25);
-            String responsible = UUID.randomUUID().toString();
-            String description = UUID.randomUUID().toString();
+            String responsible = "Who's responsible?";
+            String description = "Describe it";
 
             request = new Request(type, address, status, created, registered, solveTo,
                     responsible, description, likes);
