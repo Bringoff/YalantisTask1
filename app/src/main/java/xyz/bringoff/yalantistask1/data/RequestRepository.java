@@ -23,7 +23,7 @@ public class RequestRepository implements RequestDataSource {
     /*
     * Don't think much about what happens here, it is just dummy data generating
     */
-    private static Map<String, Request> getDummyRequests() {
+    private Map<String, Request> getDummyRequests() {
         Map<String, Request> requests = new HashMap<>(DUMMY_DATA_COUNT);
         Random random = new Random();
         Request request;

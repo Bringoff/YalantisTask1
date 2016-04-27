@@ -123,6 +123,7 @@ public class DetailsActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

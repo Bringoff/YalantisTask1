@@ -31,7 +31,7 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAd
 
     @Override
     public int getItemCount() {
-        return mUrls.size();
+        return mUrls != null ? mUrls.size() : 0;
     }
 
     @Override
