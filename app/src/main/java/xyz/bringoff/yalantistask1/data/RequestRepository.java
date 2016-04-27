@@ -56,7 +56,7 @@ public class RequestRepository implements RequestDataSource {
     @Override
     public void getRequest(@NonNull String requestId, GetRequestCallback callback) {
         if (mRequests == null) {
-            callback.onDataOnAvailable();
+            callback.onDataNotAvailable();
             return;
         }
         for (Request request : mRequests) {
@@ -64,7 +64,7 @@ public class RequestRepository implements RequestDataSource {
                 callback.onRequestLoaded(request);
             }
         }
-        callback.onDataOnAvailable();
+        callback.onDataNotAvailable();
     }
 
     private static class InstanceHolder {

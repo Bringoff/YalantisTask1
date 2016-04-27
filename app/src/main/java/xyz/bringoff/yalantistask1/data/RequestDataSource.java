@@ -21,6 +21,6 @@ public interface RequestDataSource {
 
         void onRequestLoaded(Request request);
 
-        void onDataOnAvailable();
+        void onDataNotAvailable();
     }
 }

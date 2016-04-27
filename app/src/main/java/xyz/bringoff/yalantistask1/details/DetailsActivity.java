@@ -68,7 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onDataOnAvailable() {
+                        public void onDataNotAvailable() {
                             Log.d(LOG_TAG, "Can't load request with id " + id);
                             // TODO: 11.04.2016 show error notification
                         }
