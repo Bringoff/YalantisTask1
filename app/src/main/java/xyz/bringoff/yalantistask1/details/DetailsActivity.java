@@ -20,7 +20,7 @@ import java.util.List;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.Request;
-import xyz.bringoff.yalantistask1.data.RequestDataSource;
+import xyz.bringoff.yalantistask1.data.RequestDataSourceInterface;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 import xyz.bringoff.yalantistask1.utils.recyclerutils.HorizontalSpaceItemDecoration;
 import xyz.bringoff.yalantistask1.view.CaptionValueView;
@@ -56,11 +56,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         initViews();
 
-        RequestDataSource dataSource = Injection.provideRequestDataSource();
+        RequestDataSourceInterface dataSource = Injection.provideRequestDataSource();
         if (getIntent() != null) {
             final String id = getIntent().getStringExtra(EXTRA_REQUEST_ID);
             dataSource.getRequest(id,
-                    new RequestDataSource.GetRequestCallback() {
+                    new RequestDataSourceInterface.GetRequestCallback() {
                         @Override
                         public void onRequestLoaded(Request request) {
                             mRequest = request;

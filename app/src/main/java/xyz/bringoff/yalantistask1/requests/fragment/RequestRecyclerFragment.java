@@ -14,15 +14,15 @@ import java.util.List;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.Request;
-import xyz.bringoff.yalantistask1.data.RequestDataSource;
+import xyz.bringoff.yalantistask1.data.RequestDataSourceInterface;
 import xyz.bringoff.yalantistask1.details.DetailsActivity;
 import xyz.bringoff.yalantistask1.requests.adapter.OnItemClickListener;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestRecyclerAdapter;
 
 public class RequestRecyclerFragment extends BaseRequestListFragment
-        implements OnItemClickListener, RequestDataSource.LoadRequestsCallback {
+        implements OnItemClickListener, RequestDataSourceInterface.LoadRequestsCallback {
 
-    private RequestDataSource mDataSource;
+    private RequestDataSourceInterface mDataSource;
     private RecyclerView mRequestsRecyclerView;
     private RequestRecyclerAdapter mAdapter;
 

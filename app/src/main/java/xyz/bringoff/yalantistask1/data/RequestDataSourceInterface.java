@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import java.util.List;
 
-public interface RequestDataSource {
+public interface RequestDataSourceInterface {
 
     void getRequests(@NonNull LoadRequestsCallback callback);
 

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class RequestRepository implements RequestDataSource {
+public class RequestRepository implements RequestDataSourceInterface {
 
     private static final int DUMMY_DATA_COUNT = 10;
     private Map<String, Request> mRequests;
