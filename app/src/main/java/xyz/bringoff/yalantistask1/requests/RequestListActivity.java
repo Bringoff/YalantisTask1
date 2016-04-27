@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestsPagerAdapter;
 
@@ -23,6 +25,7 @@ public class RequestListActivity extends AppCompatActivity {
     private RequestsPagerAdapter mPagerAdapter;
     private TabLayout mTabLayout;
     private DrawerLayout mDrawerLayout;
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class RequestListActivity extends AppCompatActivity {
 
     private void initViews() {
         initToolbar();
+
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+
         initDrawer();
 
         mRequestFragmentsViewPager = (ViewPager) findViewById(R.id.requests_view_pager);
@@ -67,6 +73,10 @@ public class RequestListActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer_home);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public FloatingActionButton getFab() {
+        return mFab;
     }
 
     @Override

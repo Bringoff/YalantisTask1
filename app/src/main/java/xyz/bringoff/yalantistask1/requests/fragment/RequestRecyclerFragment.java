@@ -1,6 +1,7 @@
 package xyz.bringoff.yalantistask1.requests.fragment;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.melnykov.fab.FloatingActionButton;
+
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.Injection;
@@ -16,6 +19,7 @@ import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.Request;
 import xyz.bringoff.yalantistask1.data.RequestDataSourceInterface;
 import xyz.bringoff.yalantistask1.details.DetailsActivity;
+import xyz.bringoff.yalantistask1.requests.RequestListActivity;
 import xyz.bringoff.yalantistask1.requests.adapter.OnItemClickListener;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestRecyclerAdapter;
 
@@ -25,6 +29,7 @@ public class RequestRecyclerFragment extends BaseRequestListFragment
     private RequestDataSourceInterface mDataSource;
     private RecyclerView mRequestsRecyclerView;
     private RequestRecyclerAdapter mAdapter;
+    private FloatingActionButton mFab;
 
     public RequestRecyclerFragment() {
         // Required empty public constructor
@@ -56,7 +61,19 @@ public class RequestRecyclerFragment extends BaseRequestListFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (mFab != null) {
+            mFab.attachToRecyclerView(mRequestsRecyclerView);
+        }
         mDataSource.getRequests(this);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        if (activity instanceof RequestListActivity) {
+            mFab = ((RequestListActivity) activity).getFab();
+        }
     }
 
     @Override
