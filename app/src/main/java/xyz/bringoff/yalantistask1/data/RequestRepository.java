@@ -3,14 +3,15 @@ package xyz.bringoff.yalantistask1.data;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
 public class RequestRepository implements RequestDataSource {
 
     private static final int DUMMY_DATA_COUNT = 10;
-    private List<Request> mRequests;
+    private Map<String, Request> mRequests;
 
     private RequestRepository() {
     }
@@ -22,8 +23,8 @@ public class RequestRepository implements RequestDataSource {
     /*
     * Don't think much about what happens here, it is just dummy data generating
     */
-    private static List<Request> getDummyRequests() {
-        List<Request> requests = new ArrayList<>(DUMMY_DATA_COUNT);
+    private static Map<String, Request> getDummyRequests() {
+        Map<String, Request> requests = new HashMap<>(DUMMY_DATA_COUNT);
         Random random = new Random();
         Request request;
         for (int i = 0; i < DUMMY_DATA_COUNT; i++) {
@@ -40,7 +41,7 @@ public class RequestRepository implements RequestDataSource {
 
             request = new Request(type, address, status, created, registered, solveTo,
                     responsible, description, likes);
-            requests.add(request);
+            requests.put(request.getId(), request);
         }
         return requests;
     }
@@ -50,7 +51,7 @@ public class RequestRepository implements RequestDataSource {
         if (mRequests == null) {
             mRequests = getDummyRequests();
         }
-        callback.onRequestsLoaded(mRequests);
+        callback.onRequestsLoaded(new ArrayList<>(mRequests.values()));
     }
 
     @Override
@@ -59,12 +60,11 @@ public class RequestRepository implements RequestDataSource {
             callback.onDataNotAvailable();
             return;
         }
-        for (Request request : mRequests) {
-            if (request.getId().equals(requestId)) {
-                callback.onRequestLoaded(request);
-            }
+        if (mRequests.containsKey(requestId)) {
+            callback.onRequestLoaded(mRequests.get(requestId));
+        } else {
+            callback.onDataNotAvailable();
         }
-        callback.onDataNotAvailable();
     }
 
     private static class InstanceHolder {
