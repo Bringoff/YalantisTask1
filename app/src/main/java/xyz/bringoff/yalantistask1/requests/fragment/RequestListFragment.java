@@ -63,7 +63,6 @@ public class RequestListFragment extends BaseRequestListFragment
     @Override
     protected void notifyAdapterAboutRequests() {
         mAdapter.setRequests(requests);
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override
