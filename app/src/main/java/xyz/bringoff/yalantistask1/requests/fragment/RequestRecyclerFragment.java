@@ -1,7 +1,7 @@
 package xyz.bringoff.yalantistask1.requests.fragment;
 
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,11 +68,11 @@ public class RequestRecyclerFragment extends BaseRequestListFragment
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
-        if (activity instanceof RequestListActivity) {
-            mFab = ((RequestListActivity) activity).getFab();
+        if (getActivity() instanceof RequestListActivity) {
+            mFab = ((RequestListActivity) getActivity()).getFab();
         }
     }
 
