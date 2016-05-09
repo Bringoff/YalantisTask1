@@ -1,16 +1,15 @@
 package xyz.bringoff.yalantistask1.requests.fragment;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.melnykov.fab.FloatingActionButton;
 
 import java.util.List;
 
@@ -19,11 +18,10 @@ import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.Request;
 import xyz.bringoff.yalantistask1.data.RequestDataSourceInterface;
 import xyz.bringoff.yalantistask1.details.DetailsActivity;
-import xyz.bringoff.yalantistask1.requests.RequestListActivity;
 import xyz.bringoff.yalantistask1.requests.adapter.OnItemClickListener;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestRecyclerAdapter;
 
-public class RequestRecyclerFragment extends BaseRequestListFragment
+public class RequestsFragment extends Fragment
         implements OnItemClickListener, RequestDataSourceInterface.LoadRequestsCallback {
 
     private RequestDataSourceInterface mDataSource;
@@ -31,12 +29,13 @@ public class RequestRecyclerFragment extends BaseRequestListFragment
     private RequestRecyclerAdapter mAdapter;
     private FloatingActionButton mFab;
 
-    public RequestRecyclerFragment() {
-        // Required empty public constructor
+    private List<Request> mRequests;
+
+    public RequestsFragment() {
     }
 
-    public static RequestRecyclerFragment newInstance() {
-        return new RequestRecyclerFragment();
+    public static RequestsFragment newInstance() {
+        return new RequestsFragment();
     }
 
     @Override
@@ -61,29 +60,21 @@ public class RequestRecyclerFragment extends BaseRequestListFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (mFab != null) {
-            mFab.attachToRecyclerView(mRequestsRecyclerView);
-        }
         mDataSource.getRequests(this);
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        if (getActivity() instanceof RequestListActivity) {
-            mFab = ((RequestListActivity) getActivity()).getFab();
-        }
+    public void setRequests(List<Request> requests) {
+        this.mRequests = requests;
+        notifyAdapterAboutRequests();
     }
 
-    @Override
-    protected void notifyAdapterAboutRequests() {
-        mAdapter.setRequests(requests);
+    private void notifyAdapterAboutRequests() {
+        mAdapter.setRequests(mRequests);
     }
 
     @Override
     public void onItemClicked(int position) {
-        Request request = requests.get(position);
+        Request request = mRequests.get(position);
         startActivity(DetailsActivity.getStartIntent(getActivity(), request.getId()));
     }
 

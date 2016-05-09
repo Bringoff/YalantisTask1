@@ -1,6 +1,7 @@
 package xyz.bringoff.yalantistask1.requests;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +14,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import com.melnykov.fab.FloatingActionButton;
 
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.requests.adapter.RequestsPagerAdapter;
@@ -73,10 +72,6 @@ public class RequestListActivity extends AppCompatActivity {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer_home);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    public FloatingActionButton getFab() {
-        return mFab;
     }
 
     @Override

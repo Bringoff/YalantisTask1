@@ -6,8 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.requests.fragment.RequestListFragment;
-import xyz.bringoff.yalantistask1.requests.fragment.RequestRecyclerFragment;
+import xyz.bringoff.yalantistask1.requests.fragment.RequestsFragment;
 
 public class RequestsPagerAdapter extends FragmentPagerAdapter {
 
@@ -25,9 +24,8 @@ public class RequestsPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
             case 1:
-                return RequestRecyclerFragment.newInstance();
             case 2:
-                return RequestListFragment.newInstance();
+                return RequestsFragment.newInstance();
         }
         return null;
     }

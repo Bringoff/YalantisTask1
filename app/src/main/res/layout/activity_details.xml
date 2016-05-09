@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +27,7 @@
             android:onClick="onEveryClick"
             android:text="@string/utility_sector"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/title_text_size"/>
+            android:textSize="@dimen/title_text_size" />
 
         <TextView
             android:id="@+id/status_text_view"
@@ -36,11 +35,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onEveryClick"
-            android:text="@string/in_work"/>
+            android:text="@string/in_work" />
 
         <include
             layout="@layout/horizontal_divider"
-            android:onClick="onEveryClick"/>
+            android:onClick="onEveryClick" />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/created_captionvalue_view"
@@ -48,11 +47,11 @@
             android:layout_height="wrap_content"
             android:onClick="onEveryClick"
             app:caption="@string/created"
-            app:value="@string/first_stub_date"/>
+            app:value="@string/first_stub_date" />
 
         <include
             layout="@layout/horizontal_divider"
-            android:onClick="onEveryClick"/>
+            android:onClick="onEveryClick" />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/registered_captionvalue_view"
@@ -60,11 +59,11 @@
             android:layout_height="wrap_content"
             android:onClick="onEveryClick"
             app:caption="@string/registered"
-            app:value="@string/second_stub_date"/>
+            app:value="@string/second_stub_date" />
 
         <include
             layout="@layout/horizontal_divider"
-            android:onClick="onEveryClick"/>
+            android:onClick="onEveryClick" />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/solve_to_captionvalue_view"
@@ -72,20 +71,20 @@
             android:layout_height="wrap_content"
             android:onClick="onEveryClick"
             app:caption="@string/solve_till"
-            app:value="@string/third_stub_date"/>
+            app:value="@string/third_stub_date" />
 
-        <include layout="@layout/horizontal_divider"/>
+        <include layout="@layout/horizontal_divider" />
 
         <xyz.bringoff.yalantistask1.view.CaptionValueView
             android:id="@+id/responsible_captionvalue_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:caption="@string/responsible"
-            app:value="@string/responsible_stub"/>
+            app:value="@string/responsible_stub" />
 
         <include
             layout="@layout/horizontal_divider"
-            android:onClick="onEveryClick"/>
+            android:onClick="onEveryClick" />
 
         <TextView
             android:id="@+id/detailed_description_text_view"
@@ -95,12 +94,12 @@
             android:layout_marginTop="@dimen/default_vertical_margin"
             android:onClick="onEveryClick"
             android:text="@string/description_stub"
-            android:textColor="?android:attr/textColorPrimary"/>
+            android:textColor="?android:attr/textColorPrimary" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/images_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onEveryClick"/>
+            android:onClick="onEveryClick" />
     </LinearLayout>
 </ScrollView>
