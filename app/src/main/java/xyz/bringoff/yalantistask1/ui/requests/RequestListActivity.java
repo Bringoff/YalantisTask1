@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.requests;
+package xyz.bringoff.yalantistask1.ui.requests;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.requests.adapter.RequestsPagerAdapter;
+import xyz.bringoff.yalantistask1.ui.requests.adapter.RequestsPagerAdapter;
 
 public class RequestListActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.details;
+package xyz.bringoff.yalantistask1.ui.details;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

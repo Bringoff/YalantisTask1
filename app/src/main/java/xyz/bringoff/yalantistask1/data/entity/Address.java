@@ -7,22 +7,22 @@ public class Address {
 
     @SerializedName("id")
     @Expose
-    public int id;
+    private int id;
     @SerializedName("district")
     @Expose
-    public District district;
+    private District district;
     @SerializedName("city")
     @Expose
-    public City city;
+    private City city;
     @SerializedName("street")
     @Expose
-    public Street street;
+    private Street street;
     @SerializedName("house")
     @Expose
-    public House house;
+    private House house;
     @SerializedName("flat")
     @Expose
-    public String flat;
+    private String flat;
 
     /**
      * No args constructor for use in serialization
@@ -39,18 +39,65 @@ public class Address {
         this.flat = flat;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Street getStreet() {
+        return street;
+    }
+
+    public void setStreet(Street street) {
+        this.street = street;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public String getFlat() {
+        return flat;
+    }
+
+    public void setFlat(String flat) {
+        this.flat = flat;
+    }
 
     public static class City {
 
         @SerializedName("id")
         @Expose
-        public int id;
+        private int id;
         @SerializedName("name")
         @Expose
-        public String name;
+        private String name;
         @SerializedName("ru_name")
         @Expose
-        public String ruName;
+        private String ruName;
 
         /**
          * No args constructor for use in serialization
@@ -64,19 +111,42 @@ public class Address {
             this.ruName = ruName;
         }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRuName() {
+            return ruName;
+        }
+
+        public void setRuName(String ruName) {
+            this.ruName = ruName;
+        }
     }
 
     public static class District {
 
         @SerializedName("id")
         @Expose
-        public int id;
+        private int id;
         @SerializedName("name")
         @Expose
-        public String name;
+        private String name;
         @SerializedName("ru_name")
         @Expose
-        public String ruName;
+        private String ruName;
 
         /**
          * No args constructor for use in serialization
@@ -90,16 +160,39 @@ public class Address {
             this.ruName = ruName;
         }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRuName() {
+            return ruName;
+        }
+
+        public void setRuName(String ruName) {
+            this.ruName = ruName;
+        }
     }
 
     public static class House {
 
         @SerializedName("id")
         @Expose
-        public int id;
+        private int id;
         @SerializedName("name")
         @Expose
-        public String name;
+        private String name;
 
         /**
          * No args constructor for use in serialization
@@ -112,22 +205,37 @@ public class Address {
             this.name = name;
         }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 
     public static class Street {
 
         @SerializedName("id")
         @Expose
-        public int id;
+        private int id;
         @SerializedName("name")
         @Expose
-        public String name;
+        private String name;
         @SerializedName("ru_name")
         @Expose
-        public String ruName;
+        private String ruName;
         @SerializedName("street_type")
         @Expose
-        public StreetType streetType;
+        private StreetType streetType;
 
         /**
          * No args constructor for use in serialization
@@ -142,17 +250,49 @@ public class Address {
             this.streetType = streetType;
         }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRuName() {
+            return ruName;
+        }
+
+        public void setRuName(String ruName) {
+            this.ruName = ruName;
+        }
+
+        public StreetType getStreetType() {
+            return streetType;
+        }
+
+        public void setStreetType(StreetType streetType) {
+            this.streetType = streetType;
+        }
+
         public static class StreetType {
 
             @SerializedName("id")
             @Expose
-            public int id;
+            private int id;
             @SerializedName("name")
             @Expose
-            public String name;
+            private String name;
             @SerializedName("short_name")
             @Expose
-            public String shortName;
+            private String shortName;
 
             /**
              * No args constructor for use in serialization
@@ -166,6 +306,29 @@ public class Address {
                 this.shortName = shortName;
             }
 
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getShortName() {
+                return shortName;
+            }
+
+            public void setShortName(String shortName) {
+                this.shortName = shortName;
+            }
         }
     }
 }

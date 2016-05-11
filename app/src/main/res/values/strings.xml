@@ -16,7 +16,7 @@
     <string name="days_gone_after_creation_format" translatable="false">%1$d %2$s</string>
     <string name="landscaping_building">Landscaping and building</string>
     <string name="other">Other</string>
-    <string name="all_requests">All requests</string>
+    <string name="all_requests">All tickets</string>
     <string name="done">Done</string>
     <string name="waiting">Waiting</string>
     <string name="filter">Filter</string>

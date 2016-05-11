@@ -7,31 +7,31 @@ public class User {
 
     @SerializedName("id")
     @Expose
-    public int id;
+    private int id;
     @SerializedName("first_name")
     @Expose
-    public String firstName;
+    private String firstName;
     @SerializedName("last_name")
     @Expose
-    public String lastName;
+    private String lastName;
     @SerializedName("middle_name")
     @Expose
-    public String middleName;
+    private String middleName;
     @SerializedName("email")
     @Expose
-    public String email;
+    private String email;
     @SerializedName("birthday")
     @Expose
-    public int birthday;
+    private int birthday;
     @SerializedName("phone")
     @Expose
-    public String phone;
+    private String phone;
     @SerializedName("address")
     @Expose
-    public Address address;
+    private Address address;
     @SerializedName("fb_registered")
     @Expose
-    public int fbRegistered;
+    private int fbRegistered;
 
     /**
      * No args constructor for use in serialization
@@ -52,4 +52,75 @@ public class User {
         this.fbRegistered = fbRegistered;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(int birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public int getFbRegistered() {
+        return fbRegistered;
+    }
+
+    public void setFbRegistered(int fbRegistered) {
+        this.fbRegistered = fbRegistered;
+    }
 }

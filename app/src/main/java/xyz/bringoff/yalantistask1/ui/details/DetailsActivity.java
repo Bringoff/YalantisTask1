@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.details;
+package xyz.bringoff.yalantistask1.ui.details;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,31 +7,26 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.Request;
-import xyz.bringoff.yalantistask1.data.RequestDataSourceInterface;
+import xyz.bringoff.yalantistask1.data.ITicketRepository;
+import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 import xyz.bringoff.yalantistask1.utils.recyclerutils.HorizontalSpaceItemDecoration;
 import xyz.bringoff.yalantistask1.view.CaptionValueView;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private static final String EXTRA_REQUEST_ID = "request_id";
     private static final String LOG_TAG = "DetailsActivity";
 
-    private List<String> mImageUrls;
-    private Request mRequest;
+    private static final String EXTRA_REQUEST_ID = "request_id";
+
+    private Ticket mTicket;
 
     private TextView mStatusTextView;
     private CaptionValueView mCreatedView;
@@ -52,38 +47,22 @@ public class DetailsActivity extends AppCompatActivity {
 
         initToolbar();
 
-        mImageUrls = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.image_urls)));
-
         initViews();
 
-        RequestDataSourceInterface dataSource = Injection.provideRequestDataSource();
+        ITicketRepository dataSource = Injection.provideRequestRepository();
         if (getIntent() != null) {
             final String id = getIntent().getStringExtra(EXTRA_REQUEST_ID);
-            dataSource.getRequest(id,
-                    new RequestDataSourceInterface.GetRequestCallback() {
-                        @Override
-                        public void onRequestLoaded(Request request) {
-                            mRequest = request;
-                            bindRequest();
-                        }
-
-                        @Override
-                        public void onDataNotAvailable() {
-                            Log.d(LOG_TAG, "Can't load request with id " + id);
-                            // TODO: 11.04.2016 show error notification
-                        }
-                    });
+            dataSource.getTicket(id);
         }
     }
 
     private void bindRequest() {
-        mTypeTextView.setText(mRequest.getRequestType().toString());
-        mStatusTextView.setText(mRequest.getStatus());
-        mCreatedView.setValue(DateUtils.unixToMediumDateString(this, mRequest.getCreatedDate()));
-        mRegisteredView.setValue(DateUtils.unixToMediumDateString(this, mRequest.getRegisteredDate()));
-        mSolveToView.setValue(DateUtils.unixToMediumDateString(this, mRequest.getSolveToDate()));
-        mResponsibleView.setValue(mRequest.getResponsible());
-        mDescriptionTextView.setText(mRequest.getDescription());
+        mTypeTextView.setText(mTicket.getType().getName());
+        mStatusTextView.setText(mTicket.getState().getName());
+        mCreatedView.setValue(DateUtils.unixToMediumDateString(this, mTicket.getCreatedDate()));
+        mRegisteredView.setValue(DateUtils.unixToMediumDateString(this, mTicket.getStartDate()));
+        mSolveToView.setValue(DateUtils.unixToMediumDateString(this, mTicket.getDeadline()));
+        mDescriptionTextView.setText(mTicket.getBody());
     }
 
     private void initToolbar() {
@@ -97,8 +76,8 @@ public class DetailsActivity extends AppCompatActivity {
                 new HorizontalSpaceItemDecoration((int) getResources().getDimension(R.dimen.default_vertical_margin)));
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(lm);
-        ImagesRecyclerAdapter adapter = new ImagesRecyclerAdapter(this, mImageUrls);
-        recyclerView.setAdapter(adapter);
+        /*ImagesRecyclerAdapter adapter = new ImagesRecyclerAdapter(this, mTicket.getFiles());
+        recyclerView.setAdapter(adapter);*/
 
         mTypeTextView = (TextView) findViewById(R.id.type_text_view);
         mStatusTextView = (TextView) findViewById(R.id.status_text_view);

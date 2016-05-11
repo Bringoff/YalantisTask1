@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".requests.RequestListActivity"
+            android:name=".ui.requests.RequestListActivity"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,9 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".details.DetailsActivity"
+            android:name=".ui.details.DetailsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".requests.RequestListActivity"
+            android:parentActivityName=".ui.requests.RequestListActivity"
             android:screenOrientation="sensorPortrait" />
     </application>
 

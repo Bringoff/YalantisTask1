@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.requests.adapter;
+package xyz.bringoff.yalantistask1.ui.requests.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,19 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.Request;
+import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 
 public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
-    private List<Request> mRequests;
+    private List<Ticket> mTickets;
     private OnItemClickListener mItemClickListener;
 
     public RequestRecyclerAdapter(Context context, OnItemClickListener clickListener) {
         mContext = context;
         mItemClickListener = clickListener;
-        mRequests = new ArrayList<>();
+        mTickets = new ArrayList<>();
     }
 
     @Override
@@ -35,22 +35,22 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setRequest(mRequests.get(position));
+        holder.setTicket(mTickets.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mRequests.size();
+        return mTickets.size();
     }
 
-    public void setRequests(List<Request> requests) {
-        mRequests = requests;
+    public void setTickets(List<Ticket> tickets) {
+        mTickets = tickets;
         notifyDataSetChanged();
     }
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        private Request mRequest;
+        private Ticket mTicket;
 
         private ImageView mRequestTypeImageView;
         private TextView mRequestTypeTextView;
@@ -64,7 +64,7 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemClickListener.onItemClicked(mRequests.indexOf(mRequest));
+                    mItemClickListener.onItemClicked(mTickets.indexOf(mTicket));
                 }
             });
             mRequestTypeImageView = (ImageView) itemView.findViewById(R.id.request_type_icon_image_view);
@@ -75,33 +75,18 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
             mLikesTextView = (TextView) itemView.findViewById(R.id.likes_text_view);
         }
 
-        public void setRequest(Request request) {
-            mRequest = request;
-            setRequestType(mRequest.getRequestType());
-            setRequestAddress(mRequest.getAddress());
-            setBeginDate(mRequest.getCreatedDate());
-            setEndDate(mRequest.getSolveToDate());
-            setLikes(mRequest.getLikes());
+        public void setTicket(Ticket ticket) {
+            mTicket = ticket;
+            setRequestType(mTicket.getType().getName());
+            setRequestAddress(mTicket.getUser().getAddress().getCity().getName()
+                    + ", " + mTicket.getUser().getAddress().getStreet().getName());
+            setBeginDate(mTicket.getCreatedDate());
+            setEndDate(mTicket.getDeadline());
+            setLikes(mTicket.getLikesCounter());
         }
 
-        private void setRequestType(Request.RequestType type) {
-            // As I don't have icons, I set a default one for now
-            mRequestTypeImageView.setImageResource(R.drawable.ic_doc);
-
-            switch (type) {
-                case BUILDING:
-                    mRequestTypeTextView.setText(mContext.getString(R.string.landscaping_building));
-                    break;
-                case UTILITY_SECTOR:
-                    mRequestTypeTextView.setText(mContext.getString(R.string.utility_sector));
-                    break;
-                case OTHER:
-                    mRequestTypeTextView.setText(mContext.getString(R.string.other));
-                    break;
-
-                default:
-                    break;
-            }
+        private void setRequestType(String type) {
+            mRequestTypeTextView.setText(type);
         }
 
         private void setRequestAddress(String address) {

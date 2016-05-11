@@ -12,6 +12,6 @@ public interface EContactApiService {
     @GET("tickets")
     Observable<List<Ticket>> getTickets();
 
-    @GET("tickets/{status}")
-    Observable<List<Ticket>> getTickets(@Query("status") String status);
+    @GET("tickets")
+    Observable<List<Ticket>> getTickets(@Query("state") String state);
 }
