@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.R;
@@ -18,13 +19,18 @@ public class ImagesRecyclerAdapter extends RecyclerView.Adapter<ImagesRecyclerAd
     private Context mContext;
     private List<String> mUrls;
 
-    public ImagesRecyclerAdapter(Context context, List<String> urls) {
-        mContext = context;
+    public ImagesRecyclerAdapter() {
+        mUrls = new ArrayList<>();
+    }
+
+    public void setUrls(List<String> urls) {
         mUrls = urls;
+        notifyDataSetChanged();
     }
 
     @Override
     public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+        mContext = parent.getContext();
         View view = LayoutInflater.from(mContext).inflate(R.layout.image_list_item, parent, false);
         return new Holder(view);
     }
