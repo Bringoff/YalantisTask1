@@ -43,7 +43,7 @@ public class Ticket {
     private List<File> files = new ArrayList<>();
     @SerializedName("performers")
     @Expose
-    private List<Performer> performers = new ArrayList<Performer>();
+    private List<Performer> performers = new ArrayList<>();
     @SerializedName("deadline")
     @Expose
     private long deadline;
