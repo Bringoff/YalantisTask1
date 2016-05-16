@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import xyz.bringoff.yalantistask1.Injection;
+import xyz.bringoff.yalantistask1.PresenterHolder;
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.BaseFragment;
@@ -45,6 +46,7 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     private PopupInformer mPopupInformer;
 
     private DetailsMVP.Presenter mPresenter;
+    private PresenterHolder mPresenterHolder;
 
     public static Fragment newInstance(int ticketId) {
         Bundle args = new Bundle();
@@ -60,7 +62,12 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
 
         mPopupInformer = Injection.provideSnackbarInformer();
 
-        if (savedInstanceState == null) {
+        mPresenterHolder = Injection.providePresenterHolder();
+
+        if (savedInstanceState != null) {
+            mPresenter = mPresenterHolder.getPresenter(mPresenter.getClass());
+        }
+        if (mPresenter == null) {
             mPresenter = new DetailsPresenter(getArguments().getInt(KEY_TICKET_ID));
             mPresenter.bindView(this);
         }
@@ -97,6 +104,12 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_details;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        mPresenterHolder.putPresenter(mPresenter.getClass(), mPresenter);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

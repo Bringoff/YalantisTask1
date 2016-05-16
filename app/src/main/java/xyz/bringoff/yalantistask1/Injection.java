@@ -10,6 +10,10 @@ import xyz.bringoff.yalantistask1.utils.popup.ToastPopupInformer;
 
 public class Injection {
 
+    public static PresenterHolder providePresenterHolder() {
+        return PresenterHolder.getInstance();
+    }
+
     public static ITicketRepository provideTicketRepository() {
         TicketRepository repository = TicketRepository.getInstance();
         if (repository.getApiService() == null) {
