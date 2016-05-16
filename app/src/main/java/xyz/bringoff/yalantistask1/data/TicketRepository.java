@@ -18,7 +18,16 @@ public class TicketRepository implements ITicketRepository {
 
     private EContactApiService mApiService;
 
+    private Ticket mStubTicket;
+
     private TicketRepository() {
+        mStubTicket = new Ticket();
+        mStubTicket.setBody("body");
+        mStubTicket.setCategory(new Ticket.Category(2, "Category"));
+        mStubTicket.setCreatedDate(System.currentTimeMillis());
+        mStubTicket.setStartDate(System.currentTimeMillis());
+        mStubTicket.setDeadline(System.currentTimeMillis());
+
     }
 
     public static TicketRepository getInstance() {
@@ -55,8 +64,8 @@ public class TicketRepository implements ITicketRepository {
     }
 
     @Override
-    public Observable<Ticket> getTicket(@NonNull String ticketId) {
-        return null;
+    public Observable<Ticket> getTicket(int ticketId) {
+        return Observable.just(mStubTicket);
     }
 
     @NonNull

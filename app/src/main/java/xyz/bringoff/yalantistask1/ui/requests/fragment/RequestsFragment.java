@@ -15,6 +15,7 @@ import java.util.List;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
@@ -31,6 +32,7 @@ public class RequestsFragment extends BaseFragment implements OnItemClickListene
     private static final String KEY_STATUS = "status";
 
     private ITicketRepository mDataSource;
+    private CompositeSubscription mCompositeSubscription;
     private RecyclerView mRequestsRecyclerView;
     private RequestRecyclerAdapter mAdapter;
 
@@ -52,14 +54,15 @@ public class RequestsFragment extends BaseFragment implements OnItemClickListene
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDataSource = Injection.provideRequestRepository();
+        mDataSource = Injection.provideTicketRepository();
+        mCompositeSubscription = new CompositeSubscription();
         mStatus = getArguments().getString(KEY_STATUS);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recycler_request_list, container, false);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
         mRequestsRecyclerView = (RecyclerView) view.findViewById(R.id.request_recycler_view);
         mRequestsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAdapter = new RequestRecyclerAdapter(getActivity(), this);
@@ -68,10 +71,15 @@ public class RequestsFragment extends BaseFragment implements OnItemClickListene
     }
 
     @Override
+    public int getLayoutId() {
+        return R.layout.fragment_recycler_request_list;
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        getCompositeSubscription().add(mDataSource.getTickets(mStatus)
+        mCompositeSubscription.add(mDataSource.getTickets(mStatus)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Ticket>>() {

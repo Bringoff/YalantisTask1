@@ -1,7 +1,5 @@
 package xyz.bringoff.yalantistask1.data;
 
-import android.support.annotation.NonNull;
-
 import java.util.List;
 
 import rx.Observable;
@@ -13,5 +11,5 @@ public interface ITicketRepository {
 
     Observable<List<Ticket>> getTickets(String requestStatus);
 
-    Observable<Ticket> getTicket(@NonNull String ticketId);
+    Observable<Ticket> getTicket(int ticketId);
 }

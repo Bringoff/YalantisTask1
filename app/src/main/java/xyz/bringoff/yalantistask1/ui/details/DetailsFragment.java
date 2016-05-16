@@ -22,6 +22,8 @@ import xyz.bringoff.yalantistask1.view.CaptionValueView;
 
 public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
 
+    private static final String KEY_TICKET_ID = "ticket_id";
+
     @BindView(R.id.status_text_view)
     TextView mStatusTextView;
     @BindView(R.id.created_captionvalue_view)
@@ -42,8 +44,14 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
 
     private PopupInformer mPopupInformer;
 
-    public static Fragment newInstance() {
-        return new DetailsFragment();
+    private DetailsMVP.Presenter mPresenter;
+
+    public static Fragment newInstance(int ticketId) {
+        Bundle args = new Bundle();
+        args.putInt(KEY_TICKET_ID, ticketId);
+        DetailsFragment fragment = new DetailsFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -51,6 +59,11 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
         super.onCreate(savedInstanceState);
 
         mPopupInformer = Injection.provideSnackbarInformer();
+
+        if (savedInstanceState == null) {
+            mPresenter = new DetailsPresenter(getArguments().getInt(KEY_TICKET_ID));
+            mPresenter.bindView(this);
+        }
     }
 
     @Nullable
@@ -62,6 +75,13 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
         initImagesList();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.onAttach();
+        mPresenter.onTickedShowingRequested();
     }
 
     private void initImagesList() {
@@ -77,6 +97,12 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     @Override
     public int getLayoutId() {
         return R.layout.fragment_details;
+    }
+
+    @Override
+    public void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
     }
 
     @Override
