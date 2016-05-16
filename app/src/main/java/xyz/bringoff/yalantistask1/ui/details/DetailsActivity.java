@@ -13,7 +13,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private static final String EXTRA_REQUEST_ID = "request_id";
 
-    public static Intent getStartIntent(@NonNull Context context, @NonNull String requestId) {
+    public static Intent getStartIntent(@NonNull Context context, int requestId) {
         return new Intent(context, DetailsActivity.class).putExtra(EXTRA_REQUEST_ID, requestId);
     }
 

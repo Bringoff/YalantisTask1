@@ -113,9 +113,9 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     }
 
     @Override
-    public void onDestroy() {
+    public void onDetach() {
+        super.onDetach();
         mPresenter.onDetach();
-        super.onDestroy();
     }
 
     @Override
