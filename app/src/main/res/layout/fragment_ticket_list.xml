@@ -13,10 +13,10 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/requests_recycler_view"
+            android:id="@+id/tickets_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/request_list_item" />
+            tools:listitem="@layout/ticket_list_item" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <ProgressBar

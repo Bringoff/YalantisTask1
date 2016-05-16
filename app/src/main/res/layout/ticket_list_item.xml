@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/request_list_item_height"
+    android:layout_height="@dimen/ticket_list_item_height"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardUseCompatPadding="true">
 
@@ -16,12 +16,12 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/request_content_margin">
+            android:layout_margin="@dimen/ticket_content_margin">
 
             <ImageView
-                android:id="@+id/request_type_icon_image_view"
-                android:layout_width="@dimen/request_icon_width"
-                android:layout_height="@dimen/request_icon_height"
+                android:id="@+id/ticket_type_icon_image_view"
+                android:layout_width="@dimen/ticket_icon_width"
+                android:layout_height="@dimen/ticket_icon_height"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 tools:src="@drawable/ic_doc"/>
@@ -47,46 +47,46 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/request_content_margin">
+            android:layout_margin="@dimen/ticket_content_margin">
 
             <TextView
-                android:id="@+id/request_type_text_view"
+                android:id="@+id/ticket_type_text_view"
                 style="@style/RequestTitleTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Демонтаж інших об’єктів, що входять до переліку малого чогось там"/>
 
             <TextView
-                android:id="@+id/request_address_text_view"
+                android:id="@+id/ticket_address_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/request_type_text_view"
-                android:layout_marginBottom="@dimen/request_address_vertical_margin"
-                android:layout_marginTop="@dimen/request_address_vertical_margin"
+                android:layout_below="@id/ticket_type_text_view"
+                android:layout_marginBottom="@dimen/ticket_address_vertical_margin"
+                android:layout_marginTop="@dimen/ticket_address_vertical_margin"
                 android:ellipsize="end"
                 android:maxLines="1"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit"/>
 
             <TextView
-                android:id="@+id/request_due_date_text_view"
+                android:id="@+id/ticket_due_date_text_view"
                 style="@style/RequestDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@id/request_address_text_view"
+                android:layout_below="@id/ticket_address_text_view"
                 tools:text="Feb. 9, 2016"/>
 
             <TextView
-                android:id="@+id/request_days_left_text_view"
+                android:id="@+id/ticket_days_left_text_view"
                 style="@style/RequestDateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/request_address_text_view"
+                android:layout_below="@id/ticket_address_text_view"
                 tools:text="7 days"/>
         </RelativeLayout>
     </LinearLayout>

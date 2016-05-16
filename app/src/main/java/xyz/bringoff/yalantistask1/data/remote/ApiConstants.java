@@ -4,7 +4,7 @@ public interface ApiConstants {
 
     String API_BASE_URL = "http://dev-contact.yalantis.com/rest/v1/";
 
-    interface RequestStateFilter {
+    interface TicketStateFilter {
 
         String IN_PROGRESS = "0,9,5,7,8";
         String DONE = "10,6";

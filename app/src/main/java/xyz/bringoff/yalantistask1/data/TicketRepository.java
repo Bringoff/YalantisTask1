@@ -55,11 +55,11 @@ public class TicketRepository implements ITicketRepository {
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets(String requestStatus) {
-        if (requestStatus == null) {
+    public Observable<List<Ticket>> getTickets(String ticketStatus) {
+        if (ticketStatus == null) {
             return mApiService.getTickets().doOnError(logOnErrorAction());
         } else {
-            return mApiService.getTickets(requestStatus).doOnError(logOnErrorAction());
+            return mApiService.getTickets(ticketStatus).doOnError(logOnErrorAction());
         }
     }
 

@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests;
+package xyz.bringoff.yalantistask1.ui.tickets;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.ui.requests.adapter.RequestsPagerAdapter;
+import xyz.bringoff.yalantistask1.ui.tickets.adapter.TicketsPagerAdapter;
 
-public class RequestListActivity extends AppCompatActivity {
+public class TicketsActivity extends AppCompatActivity {
 
-    private ViewPager mRequestFragmentsViewPager;
-    private RequestsPagerAdapter mPagerAdapter;
+    private ViewPager mTicketsFragmentsViewPager;
+    private TicketsPagerAdapter mPagerAdapter;
     private TabLayout mTabLayout;
     private DrawerLayout mDrawerLayout;
     private FloatingActionButton mFab;
@@ -29,8 +29,8 @@ public class RequestListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getString(R.string.all_requests));
-        setContentView(R.layout.activity_request_list);
+        setTitle(getString(R.string.all_tickets));
+        setContentView(R.layout.activity_ticket_list);
 
         initViews();
     }
@@ -42,11 +42,11 @@ public class RequestListActivity extends AppCompatActivity {
 
         initDrawer();
 
-        mRequestFragmentsViewPager = (ViewPager) findViewById(R.id.requests_view_pager);
-        mPagerAdapter = new RequestsPagerAdapter(this, getSupportFragmentManager());
-        mRequestFragmentsViewPager.setAdapter(mPagerAdapter);
-        mTabLayout = (TabLayout) findViewById(R.id.requests_tab_layout);
-        mTabLayout.setupWithViewPager(mRequestFragmentsViewPager);
+        mTicketsFragmentsViewPager = (ViewPager) findViewById(R.id.tickets_view_pager);
+        mPagerAdapter = new TicketsPagerAdapter(this, getSupportFragmentManager());
+        mTicketsFragmentsViewPager.setAdapter(mPagerAdapter);
+        mTabLayout = (TabLayout) findViewById(R.id.tickets_tab_layout);
+        mTabLayout.setupWithViewPager(mTicketsFragmentsViewPager);
 
         TextView authorsTextView = (TextView) findViewById(R.id.authors_text_view);
         authorsTextView.setMovementMethod(LinkMovementMethod.getInstance());
@@ -76,7 +76,7 @@ public class RequestListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.requests_menu, menu);
+        getMenuInflater().inflate(R.menu.tickets_menu, menu);
         return true;
     }
 

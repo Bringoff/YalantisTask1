@@ -12,11 +12,11 @@
     <dimen name="like_drawable_padding">8dp</dimen>
     <dimen name="like_text_size">16sp</dimen>
 
-    <dimen name="request_list_item_height">126dp</dimen>
-    <dimen name="request_content_margin">16dp</dimen>
-    <dimen name="request_icon_width">80dp</dimen>
-    <dimen name="request_icon_height">40dp</dimen>
-    <dimen name="request_address_vertical_margin">6dp</dimen>
+    <dimen name="ticket_list_item_height">126dp</dimen>
+    <dimen name="ticket_content_margin">16dp</dimen>
+    <dimen name="ticket_icon_width">80dp</dimen>
+    <dimen name="ticket_icon_height">40dp</dimen>
+    <dimen name="ticket_address_vertical_margin">6dp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="drawer_logo_text_size">28dp</dimen>

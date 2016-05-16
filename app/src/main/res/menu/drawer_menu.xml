@@ -6,7 +6,7 @@
             android:id="@+id/action_all_requests"
             android:checked="true"
             android:icon="@drawable/ic_issues"
-            android:title="@string/all_requests"/>
+            android:title="@string/all_tickets" />
 
         <item
             android:id="@+id/action_requests_map"

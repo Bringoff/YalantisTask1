@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests;
+package xyz.bringoff.yalantistask1.ui.tickets;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,21 +21,22 @@ import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.BaseFragment;
 import xyz.bringoff.yalantistask1.ui.details.DetailsActivity;
-import xyz.bringoff.yalantistask1.ui.requests.adapter.OnItemClickListener;
-import xyz.bringoff.yalantistask1.ui.requests.adapter.RequestRecyclerAdapter;
+import xyz.bringoff.yalantistask1.ui.tickets.adapter.OnItemClickListener;
+import xyz.bringoff.yalantistask1.ui.tickets.adapter.TicketRecyclerAdapter;
 import xyz.bringoff.yalantistask1.utils.popup.PopupInformer;
 
-public class TicketsFragment extends BaseFragment implements TicketsMVP.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class TicketsFragment extends BaseFragment
+        implements TicketsMVP.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String KEY_STATUS = "status";
 
     @BindView(R.id.progress)
     ProgressBar mProgressBar;
-    @BindView(R.id.requests_recycler_view)
-    RecyclerView mRequestsRecyclerView;
+    @BindView(R.id.tickets_recycler_view)
+    RecyclerView mTicketsRecyclerView;
     @BindView(R.id.refresh)
     SwipeRefreshLayout mRefreshLayout;
-    private RequestRecyclerAdapter mAdapter;
+    private TicketRecyclerAdapter mAdapter;
 
     private PopupInformer mPopupInformer;
 
@@ -85,9 +86,9 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
                              Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        mRequestsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new RequestRecyclerAdapter(getActivity(), this);
-        mRequestsRecyclerView.setAdapter(mAdapter);
+        mTicketsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mAdapter = new TicketRecyclerAdapter(getActivity(), this);
+        mTicketsRecyclerView.setAdapter(mAdapter);
 
         mRefreshLayout.setOnRefreshListener(this);
         return view;
@@ -95,7 +96,7 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_request_list;
+        return R.layout.fragment_ticket_list;
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface ITicketRepository {
 
     Observable<List<Ticket>> getTickets();
 
-    Observable<List<Ticket>> getTickets(String requestStatus);
+    Observable<List<Ticket>> getTickets(String ticketStatus);
 
     Observable<Ticket> getTicket(int ticketId);
 }

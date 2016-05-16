@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests.adapter;
+package xyz.bringoff.yalantistask1.ui.tickets.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +15,13 @@ import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 
-public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecyclerAdapter.ViewHolder> {
+public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Ticket> mTickets;
     private OnItemClickListener mItemClickListener;
 
-    public RequestRecyclerAdapter(Context context, OnItemClickListener clickListener) {
+    public TicketRecyclerAdapter(Context context, OnItemClickListener clickListener) {
         mContext = context;
         mItemClickListener = clickListener;
         mTickets = new ArrayList<>();
@@ -30,7 +30,7 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(
-                parent.getContext()).inflate(R.layout.request_list_item, parent, false));
+                parent.getContext()).inflate(R.layout.ticket_list_item, parent, false));
     }
 
     @Override
@@ -52,11 +52,11 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
 
         private Ticket mTicket;
 
-        private ImageView mRequestTypeImageView;
-        private TextView mRequestTypeTextView;
-        private TextView mRequestAddressTextView;
-        private TextView mRequestEndDateTextView;
-        private TextView mRequestBeginDateDiffTextView;
+        private ImageView mTicketTypeImageView;
+        private TextView mTicketTypeTextView;
+        private TextView mTicketAddressTextView;
+        private TextView mTicketEndDateTextView;
+        private TextView mTicketBeginDateDiffTextView;
         private TextView mLikesTextView;
 
         public ViewHolder(View itemView) {
@@ -67,38 +67,38 @@ public class RequestRecyclerAdapter extends RecyclerView.Adapter<RequestRecycler
                     mItemClickListener.onItemClicked(mTickets.indexOf(mTicket));
                 }
             });
-            mRequestTypeImageView = (ImageView) itemView.findViewById(R.id.request_type_icon_image_view);
-            mRequestTypeTextView = (TextView) itemView.findViewById(R.id.request_type_text_view);
-            mRequestAddressTextView = (TextView) itemView.findViewById(R.id.request_address_text_view);
-            mRequestEndDateTextView = (TextView) itemView.findViewById(R.id.request_due_date_text_view);
-            mRequestBeginDateDiffTextView = (TextView) itemView.findViewById(R.id.request_days_left_text_view);
+            mTicketTypeImageView = (ImageView) itemView.findViewById(R.id.ticket_type_icon_image_view);
+            mTicketTypeTextView = (TextView) itemView.findViewById(R.id.ticket_type_text_view);
+            mTicketAddressTextView = (TextView) itemView.findViewById(R.id.ticket_address_text_view);
+            mTicketEndDateTextView = (TextView) itemView.findViewById(R.id.ticket_due_date_text_view);
+            mTicketBeginDateDiffTextView = (TextView) itemView.findViewById(R.id.ticket_days_left_text_view);
             mLikesTextView = (TextView) itemView.findViewById(R.id.likes_text_view);
         }
 
         public void setTicket(Ticket ticket) {
             mTicket = ticket;
-            setRequestType(mTicket.getType().getName());
-            setRequestAddress(mTicket.getUser().getAddress().getCity().getName()
+            setTicketType(mTicket.getType().getName());
+            setTicketAddress(mTicket.getUser().getAddress().getCity().getName()
                     + ", " + mTicket.getUser().getAddress().getStreet().getName());
             setBeginDate(mTicket.getCreatedDate());
             setEndDate(mTicket.getDeadline());
             setLikes(mTicket.getLikesCounter());
         }
 
-        private void setRequestType(String type) {
-            mRequestTypeTextView.setText(type);
+        private void setTicketType(String type) {
+            mTicketTypeTextView.setText(type);
         }
 
-        private void setRequestAddress(String address) {
-            mRequestAddressTextView.setText(address);
+        private void setTicketAddress(String address) {
+            mTicketAddressTextView.setText(address);
         }
 
         private void setBeginDate(long date) {
-            mRequestBeginDateDiffTextView.setText(DateUtils.unixToDateDiffString(mContext, date));
+            mTicketBeginDateDiffTextView.setText(DateUtils.unixToDateDiffString(mContext, date));
         }
 
         private void setEndDate(long date) {
-            mRequestEndDateTextView.setText(DateUtils.unixToMediumDateString(mContext, date));
+            mTicketEndDateTextView.setText(DateUtils.unixToMediumDateString(mContext, date));
         }
 
         private void setLikes(int likes) {

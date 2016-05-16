@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests;
+package xyz.bringoff.yalantistask1.ui.tickets;
 
 import java.lang.ref.WeakReference;
 import java.util.List;

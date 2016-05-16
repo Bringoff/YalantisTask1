@@ -11,10 +11,10 @@ import xyz.bringoff.yalantistask1.R;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    private static final String EXTRA_REQUEST_ID = "request_id";
+    private static final String EXTRA_TICKET_ID = "ticket_id";
 
-    public static Intent getStartIntent(@NonNull Context context, int requestId) {
-        return new Intent(context, DetailsActivity.class).putExtra(EXTRA_REQUEST_ID, requestId);
+    public static Intent getStartIntent(@NonNull Context context, int ticketId) {
+        return new Intent(context, DetailsActivity.class).putExtra(EXTRA_TICKET_ID, ticketId);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         initToolbar();
         if (savedInstanceState == null) {
-            initFragment(getIntent().getIntExtra(EXTRA_REQUEST_ID, 0));
+            initFragment(getIntent().getIntExtra(EXTRA_TICKET_ID, 0));
         }
     }
 

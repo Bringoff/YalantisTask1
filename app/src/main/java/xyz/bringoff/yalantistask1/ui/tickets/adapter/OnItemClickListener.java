@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests.adapter;
+package xyz.bringoff.yalantistask1.ui.tickets.adapter;
 
 public interface OnItemClickListener {
 
