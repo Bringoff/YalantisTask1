@@ -2,6 +2,7 @@ package xyz.bringoff.yalantistask1.ui.requests;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,9 +25,7 @@ import xyz.bringoff.yalantistask1.ui.requests.adapter.OnItemClickListener;
 import xyz.bringoff.yalantistask1.ui.requests.adapter.RequestRecyclerAdapter;
 import xyz.bringoff.yalantistask1.utils.popup.PopupInformer;
 
-public class TicketsFragment extends BaseFragment implements TicketsMVP.View, OnItemClickListener {
-
-    private static final String TAG = "TicketsFragment";
+public class TicketsFragment extends BaseFragment implements TicketsMVP.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String KEY_STATUS = "status";
 
@@ -34,6 +33,8 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
     ProgressBar mProgressBar;
     @BindView(R.id.requests_recycler_view)
     RecyclerView mRequestsRecyclerView;
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout mRefreshLayout;
     private RequestRecyclerAdapter mAdapter;
 
     private PopupInformer mPopupInformer;
@@ -68,7 +69,7 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
         mCompositeSubscription = new CompositeSubscription();
         mPresenterHolder = Injection.providePresenterHolder();
 
-        mPopupInformer = Injection.provideToastInformer();
+        mPopupInformer = Injection.provideSnackbarInformer();
 
         if (savedInstanceState != null) {
             mPresenter = mPresenterHolder.getPresenter(TicketsMVP.Presenter.class);
@@ -88,7 +89,13 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
         mAdapter = new RequestRecyclerAdapter(getActivity(), this);
         mRequestsRecyclerView.setAdapter(mAdapter);
 
+        mRefreshLayout.setOnRefreshListener(this);
         return view;
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_request_list;
     }
 
     @Override
@@ -103,11 +110,6 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
     public void onDetach() {
         super.onDetach();
         mPresenter.onDetach();
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_request_list;
     }
 
     @Override
@@ -128,15 +130,23 @@ public class TicketsFragment extends BaseFragment implements TicketsMVP.View, On
     @Override
     public void showProgress() {
         mProgressBar.setVisibility(View.VISIBLE);
+        mRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideProgress() {
         mProgressBar.setVisibility(View.GONE);
+        mRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showError(Throwable errorCause) {
+        hideProgress();
         mPopupInformer.showLongPopup(getView(), errorCause.getLocalizedMessage());
+    }
+
+    @Override
+    public void onRefresh() {
+        mPresenter.onShowTickets();
     }
 }
