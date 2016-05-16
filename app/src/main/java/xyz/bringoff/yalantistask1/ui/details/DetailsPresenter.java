@@ -34,7 +34,7 @@ public class DetailsPresenter implements DetailsMVP.Presenter {
     }
 
     @Override
-    public void onTickedShowingRequested() {
+    public void onShowTicket() {
         subscribeForTicket();
     }
 

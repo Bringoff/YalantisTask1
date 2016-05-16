@@ -88,7 +88,7 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPresenter.onAttach();
-        mPresenter.onTickedShowingRequested();
+        mPresenter.onShowTicket();
     }
 
     private void initImagesList() {

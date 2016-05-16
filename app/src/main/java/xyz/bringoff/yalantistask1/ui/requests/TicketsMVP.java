@@ -1,14 +1,22 @@
-package xyz.bringoff.yalantistask1.ui.details;
+package xyz.bringoff.yalantistask1.ui.requests;
+
+import java.util.List;
 
 import xyz.bringoff.yalantistask1.data.entity.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.mvp.BasePresenter;
 import xyz.bringoff.yalantistask1.ui.base.mvp.BaseView;
 
-public interface DetailsMVP {
+public interface TicketsMVP {
 
     interface View extends BaseView {
 
-        void showTicket(Ticket ticket);
+        void showTickets(List<Ticket> tickets);
+
+        void showDetails(int ticketId);
+
+        void showProgress();
+
+        void hideProgress();
 
         void showError(Throwable errorCause);
     }
@@ -17,6 +25,8 @@ public interface DetailsMVP {
 
         void bindView(View view);
 
-        void onShowTicket();
+        void onShowTickets();
+
+        void onShowTicketDetails(Ticket ticket);
     }
 }

@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.ui.requests.fragment;
+package xyz.bringoff.yalantistask1.ui.requests;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

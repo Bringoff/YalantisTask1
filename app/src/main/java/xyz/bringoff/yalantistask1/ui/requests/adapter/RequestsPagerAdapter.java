@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
-import xyz.bringoff.yalantistask1.ui.requests.fragment.RequestsFragment;
+import xyz.bringoff.yalantistask1.ui.requests.RequestsFragment;
 
 public class RequestsPagerAdapter extends FragmentPagerAdapter {
 
