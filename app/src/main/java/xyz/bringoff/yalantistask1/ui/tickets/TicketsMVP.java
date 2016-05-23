@@ -2,7 +2,7 @@ package xyz.bringoff.yalantistask1.ui.tickets;
 
 import java.util.List;
 
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.mvp.BasePresenter;
 import xyz.bringoff.yalantistask1.ui.base.mvp.BaseView;
 

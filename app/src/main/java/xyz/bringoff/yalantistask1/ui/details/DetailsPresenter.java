@@ -1,5 +1,7 @@
 package xyz.bringoff.yalantistask1.ui.details;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -8,9 +10,11 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 
 public class DetailsPresenter implements DetailsMVP.Presenter {
+
+    private static final String LOG_TAG = "DetailsPresenter";
 
     private final ITicketRepository mTicketRepository;
     private WeakReference<DetailsMVP.View> mView;
@@ -51,6 +55,7 @@ public class DetailsPresenter implements DetailsMVP.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        Log.e(LOG_TAG, throwable.getMessage(), throwable);
                         getView().showError(throwable);
                     }
                 }));

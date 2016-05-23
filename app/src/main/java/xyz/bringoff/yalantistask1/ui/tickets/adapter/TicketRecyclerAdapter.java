@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 
 public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAdapter.ViewHolder> {
@@ -35,7 +35,7 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setTicket(mTickets.get(position));
+        holder.bindTicket(mTickets.get(position));
     }
 
     @Override
@@ -75,14 +75,13 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
             mLikesTextView = (TextView) itemView.findViewById(R.id.likes_text_view);
         }
 
-        public void setTicket(Ticket ticket) {
+        public void bindTicket(Ticket ticket) {
             mTicket = ticket;
-            setTicketType(mTicket.getType().getName());
-            setTicketAddress(mTicket.getUser().getAddress().getCity().getName()
-                    + ", " + mTicket.getUser().getAddress().getStreet().getName());
-            setBeginDate(mTicket.getCreatedDate());
-            setEndDate(mTicket.getDeadline());
-            setLikes(mTicket.getLikesCounter());
+            setTicketType(mTicket.getType());
+            setTicketAddress(mTicket.getAddress());
+            setBeginDate(mTicket.getCreatingDate());
+            setEndDate(mTicket.getDeadlineDate());
+            setLikes(mTicket.getLikesCount());
         }
 
         private void setTicketType(String type) {

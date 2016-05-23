@@ -1,9 +1,9 @@
-package xyz.bringoff.yalantistask1.data.entity;
+package xyz.bringoff.yalantistask1.data.remote.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Address {
+public class AddressEntity {
 
     @SerializedName("id")
     @Expose
@@ -27,16 +27,7 @@ public class Address {
     /**
      * No args constructor for use in serialization
      */
-    public Address() {
-    }
-
-    public Address(int id, District district, City city, Street street, House house, String flat) {
-        this.id = id;
-        this.district = district;
-        this.city = city;
-        this.street = street;
-        this.house = house;
-        this.flat = flat;
+    public AddressEntity() {
     }
 
     public int getId() {

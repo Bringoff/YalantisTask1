@@ -1,9 +1,9 @@
-package xyz.bringoff.yalantistask1.data.entity;
+package xyz.bringoff.yalantistask1.data.remote.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class UserEntity {
 
     @SerializedName("id")
     @Expose
@@ -28,7 +28,7 @@ public class User {
     private String phone;
     @SerializedName("address")
     @Expose
-    private Address address;
+    private AddressEntity mAddressEntity;
     @SerializedName("fb_registered")
     @Expose
     private int fbRegistered;
@@ -36,20 +36,7 @@ public class User {
     /**
      * No args constructor for use in serialization
      */
-    public User() {
-    }
-
-    public User(int id, String firstName, String lastName, String middleName, String email,
-                int birthday, String phone, Address address, int fbRegistered) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.email = email;
-        this.birthday = birthday;
-        this.phone = phone;
-        this.address = address;
-        this.fbRegistered = fbRegistered;
+    public UserEntity() {
     }
 
     public int getId() {
@@ -108,12 +95,12 @@ public class User {
         this.phone = phone;
     }
 
-    public Address getAddress() {
-        return address;
+    public AddressEntity getAddressEntity() {
+        return mAddressEntity;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressEntity(AddressEntity addressEntity) {
+        this.mAddressEntity = addressEntity;
     }
 
     public int getFbRegistered() {

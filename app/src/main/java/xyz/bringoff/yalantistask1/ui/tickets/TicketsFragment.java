@@ -18,7 +18,7 @@ import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.PresenterHolder;
 import xyz.bringoff.yalantistask1.R;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.BaseFragment;
 import xyz.bringoff.yalantistask1.ui.details.DetailsActivity;
 import xyz.bringoff.yalantistask1.ui.tickets.adapter.OnItemClickListener;

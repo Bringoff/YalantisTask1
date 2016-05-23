@@ -9,7 +9,7 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 
 public class TicketsPresenter implements TicketsMVP.Presenter {
 

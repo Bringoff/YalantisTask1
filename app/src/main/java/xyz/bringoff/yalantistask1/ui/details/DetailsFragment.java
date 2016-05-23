@@ -14,7 +14,7 @@ import butterknife.BindView;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.PresenterHolder;
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.entity.Ticket;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.BaseFragment;
 import xyz.bringoff.yalantistask1.utils.DateUtils;
 import xyz.bringoff.yalantistask1.utils.popup.PopupInformer;
@@ -120,12 +120,12 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
 
     @Override
     public void showTicket(Ticket ticket) {
-        mTypeTextView.setText(ticket.getType().getName());
-        mStatusTextView.setText(ticket.getState().getName());
-        mCreatedView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getCreatedDate()));
-        mRegisteredView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getStartDate()));
-        mSolveToView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getDeadline()));
-        mDescriptionTextView.setText(ticket.getBody());
+        mTypeTextView.setText(ticket.getType());
+        mStatusTextView.setText(ticket.getStatus());
+        mCreatedView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getCreatingDate()));
+        mRegisteredView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getRegisteringDate()));
+        mSolveToView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getDeadlineDate()));
+        mDescriptionTextView.setText(ticket.getDescription());
     }
 
     @Override

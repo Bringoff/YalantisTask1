@@ -1,4 +1,4 @@
-package xyz.bringoff.yalantistask1.data.entity;
+package xyz.bringoff.yalantistask1.data.remote.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ticket {
+public class TicketEntity {
 
     @SerializedName("id")
     @Expose
     private int id;
     @SerializedName("user")
     @Expose
-    private User user;
+    private UserEntity mUserEntity;
     @SerializedName("category")
     @Expose
     private Category category;
@@ -54,26 +54,7 @@ public class Ticket {
     /**
      * No args constructor for use in serialization
      */
-    public Ticket() {
-    }
-
-    public Ticket(int id, User user, Category category, Type type, String title, String body,
-                  int createdDate, int startDate, State state, String ticketId, List<File> files,
-                  List<Performer> performers, int deadline, int likesCounter) {
-        this.id = id;
-        this.user = user;
-        this.category = category;
-        this.type = type;
-        this.title = title;
-        this.body = body;
-        this.createdDate = createdDate;
-        this.startDate = startDate;
-        this.state = state;
-        this.ticketId = ticketId;
-        this.files = files;
-        this.performers = performers;
-        this.deadline = deadline;
-        this.likesCounter = likesCounter;
+    public TicketEntity() {
     }
 
     public int getId() {
@@ -84,12 +65,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public UserEntity getUserEntity() {
+        return mUserEntity;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserEntity(UserEntity userEntity) {
+        this.mUserEntity = userEntity;
     }
 
     public Category getCategory() {
