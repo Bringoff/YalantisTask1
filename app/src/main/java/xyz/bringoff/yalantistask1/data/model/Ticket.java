@@ -7,6 +7,10 @@ import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
 
 public class Ticket {
 
+    public static final String STATUS_IN_PROGRESS = "in_progress";
+    public static final String STATUS_DONE = "done";
+    public static final String STATUS_PENDING = "pending";
+
     private int mId;
     private String mStatus;
     private String mType;

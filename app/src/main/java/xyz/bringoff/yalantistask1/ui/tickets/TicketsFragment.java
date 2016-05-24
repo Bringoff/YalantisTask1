@@ -69,7 +69,8 @@ public class TicketsFragment extends BaseFragment
             mPresenter = mPresenterHolder.getPresenter(TicketsMVP.Presenter.class);
         }
         if (mPresenter == null) {
-            mPresenter = new TicketsPresenter(getArguments().getString(KEY_STATUS));
+            mPresenter = new TicketsPresenter(Injection.provideTicketRepository(getContext()),
+                    getArguments().getString(KEY_STATUS));
         }
         mPresenter.bindView(this);
     }

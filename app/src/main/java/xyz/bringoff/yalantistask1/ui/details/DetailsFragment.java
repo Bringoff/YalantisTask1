@@ -68,7 +68,8 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
             mPresenter = mPresenterHolder.getPresenter(mPresenter.getClass());
         }
         if (mPresenter == null) {
-            mPresenter = new DetailsPresenter(getArguments().getInt(KEY_TICKET_ID));
+            mPresenter = new DetailsPresenter(Injection.provideTicketRepository(getContext()),
+                    getArguments().getInt(KEY_TICKET_ID));
             mPresenter.bindView(this);
         }
     }

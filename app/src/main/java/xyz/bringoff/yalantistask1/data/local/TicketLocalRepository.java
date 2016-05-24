@@ -29,7 +29,7 @@ public class TicketLocalRepository implements ITicketRepository {
     public Observable<Ticket> getTicket(int ticketId) {
         return mDatabase.createQuery(DbScheme.TicketTable.TABLE_NAME,
                 "SELECT * FROM " + DbScheme.TicketTable.TABLE_NAME +
-                        " WHERE" + DbScheme.TicketTable._ID + " = " + ticketId)
+                        " WHERE " + DbScheme.TicketTable._ID + " = " + ticketId + ";")
                 .mapToOne(new Func1<Cursor, Ticket>() {
                     @Override
                     public Ticket call(Cursor cursor) {
@@ -40,13 +40,13 @@ public class TicketLocalRepository implements ITicketRepository {
 
     @Override
     public Observable<List<Ticket>> getTickets() {
-        return getTicketsRaw("SELECT * FROM " + DbScheme.TicketTable.TABLE_NAME);
+        return getTicketsRaw("SELECT * FROM " + DbScheme.TicketTable.TABLE_NAME + ";");
     }
 
     @Override
     public Observable<List<Ticket>> getTickets(String ticketStatus) {
         return getTicketsRaw("SELECT * FROM " + DbScheme.TicketTable.TABLE_NAME +
-                " WHERE" + DbScheme.TicketTable.COLUMN_STATUS + " = " + ticketStatus);
+                " WHERE " + DbScheme.TicketTable.COLUMN_STATUS + " = '" + ticketStatus + "';");
     }
 
     private Observable<List<Ticket>> getTicketsRaw(String query) {

@@ -8,7 +8,6 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
-import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 
@@ -22,8 +21,8 @@ public class DetailsPresenter implements DetailsMVP.Presenter {
     private int mTicketId;
     private Ticket mTicket;
 
-    public DetailsPresenter(int ticketId) {
-        mTicketRepository = Injection.provideTicketRepository(getView().getContext());
+    public DetailsPresenter(ITicketRepository ticketRepository, int ticketId) {
+        mTicketRepository = ticketRepository;
         mCompositeSubscription = new CompositeSubscription();
         mTicketId = ticketId;
     }

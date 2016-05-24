@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
+import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.ui.tickets.TicketsFragment;
 
 public class TicketsPagerAdapter extends FragmentPagerAdapter {
@@ -24,11 +24,11 @@ public class TicketsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return TicketsFragment.newInstance(ApiConstants.TicketStateFilter.IN_PROGRESS);
+                return TicketsFragment.newInstance(Ticket.STATUS_IN_PROGRESS);
             case 1:
-                return TicketsFragment.newInstance(ApiConstants.TicketStateFilter.DONE);
+                return TicketsFragment.newInstance(Ticket.STATUS_DONE);
             case 2:
-                return TicketsFragment.newInstance(ApiConstants.TicketStateFilter.PENDING);
+                return TicketsFragment.newInstance(Ticket.STATUS_PENDING);
         }
         return null;
     }

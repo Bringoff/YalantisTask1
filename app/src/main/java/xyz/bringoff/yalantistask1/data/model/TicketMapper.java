@@ -34,7 +34,20 @@ public class TicketMapper {
         Ticket model = new Ticket();
 
         model.setId(ticketEntity.getId());
-        model.setStatus(ticketEntity.getState().getName());
+        switch (ticketEntity.getState().getName()) {
+            case "0,9,5,7,8":
+                model.setStatus(Ticket.STATUS_IN_PROGRESS);
+                break;
+            case "10,6":
+                model.setStatus(Ticket.STATUS_DONE);
+                break;
+            case "1,3,4":
+                model.setStatus(Ticket.STATUS_PENDING);
+                break;
+            default:
+                model.setStatus("");
+                break;
+        }
         model.setType(ticketEntity.getType().getName());
         model.setDescription(ticketEntity.getBody());
 
