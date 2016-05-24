@@ -1,6 +1,7 @@
 package xyz.bringoff.yalantistask1.data;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import rx.functions.Func1;
 import xyz.bringoff.yalantistask1.data.local.db.ITicketStorage;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.data.model.TicketMapper;
+import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
 import xyz.bringoff.yalantistask1.data.remote.EContactApiService;
 import xyz.bringoff.yalantistask1.data.remote.entity.TicketEntity;
 
@@ -52,17 +54,19 @@ public class TicketRepository implements ITicketRepository {
 
     @Override
     public Observable<List<Ticket>> getTickets(String ticketStatus) {
+        String apiTicketStatus = getApiStatus(ticketStatus);
+
         Observable<List<TicketEntity>> remote;
-        if (ticketStatus == null) {
+        if (apiTicketStatus == null) {
             remote = mApiService.getTickets();
         } else {
-            remote = mApiService.getTickets(ticketStatus);
+            remote = mApiService.getTickets(apiTicketStatus);
         }
         Observable<List<Ticket>> local;
-        if (ticketStatus == null) {
+        if (apiTicketStatus == null) {
             local = mLocalTicketRepository.getTickets();
         } else {
-            local = mLocalTicketRepository.getTickets(ticketStatus);
+            local = mLocalTicketRepository.getTickets(apiTicketStatus);
         }
         return Observable.merge(
                 local, remote.map(getTicketsMappingFunc())
@@ -72,7 +76,24 @@ public class TicketRepository implements ITicketRepository {
                                           mTicketStorage.putTickets(tickets);
                                       }
                                   }
-                        )).doOnError(logOnErrorAction());
+                        ));
+    }
+
+    @Nullable
+    private String getApiStatus(String ticketStatus) {
+        String apiTicketStatus = null;
+        switch (ticketStatus) {
+            case Ticket.STATUS_IN_PROGRESS:
+                apiTicketStatus = ApiConstants.TicketStateFilter.IN_PROGRESS;
+                break;
+            case Ticket.STATUS_DONE:
+                apiTicketStatus = ApiConstants.TicketStateFilter.DONE;
+                break;
+            case Ticket.STATUS_PENDING:
+                apiTicketStatus = ApiConstants.TicketStateFilter.PENDING;
+                break;
+        }
+        return apiTicketStatus;
     }
 
     @NonNull
@@ -91,8 +112,7 @@ public class TicketRepository implements ITicketRepository {
 
     @Override
     public Observable<Ticket> getTicket(int ticketId) {
-        return mLocalTicketRepository.getTicket(ticketId)
-                .doOnError(logOnErrorAction());
+        return mLocalTicketRepository.getTicket(ticketId);
     }
 
     @NonNull
