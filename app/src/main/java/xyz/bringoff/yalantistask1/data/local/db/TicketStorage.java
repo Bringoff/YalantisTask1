@@ -16,12 +16,10 @@ import xyz.bringoff.yalantistask1.data.model.TicketMapper;
 public class TicketStorage implements ITicketStorage {
 
     private final BriteDatabase mDatabase;
-    private DbOpenHelper mOpenHelper;
 
     public TicketStorage(DbOpenHelper openHelper) {
-        mOpenHelper = openHelper;
         SqlBrite sqlBrite = SqlBrite.create();
-        mDatabase = sqlBrite.wrapDatabaseHelper(mOpenHelper, Schedulers.io());
+        mDatabase = sqlBrite.wrapDatabaseHelper(openHelper, Schedulers.io());
     }
 
     @Override

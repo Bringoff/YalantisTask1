@@ -23,27 +23,22 @@ public class TicketRepository implements ITicketRepository {
 
     private EContactApiService mApiService;
     private ITicketStorage mTicketStorage;
+    private ITicketRepository mLocalTicketRepository;
 
-    private Ticket mStubTicket;
-
-    private TicketRepository(EContactApiService apiService, ITicketStorage ticketStorage) {
+    private TicketRepository(EContactApiService apiService, ITicketRepository localTicketRepository,
+                             ITicketStorage ticketStorage) {
         mApiService = apiService;
+        mLocalTicketRepository = localTicketRepository;
         mTicketStorage = ticketStorage;
-
-        mStubTicket = new Ticket();
-        mStubTicket.setId(123);
-        mStubTicket.setCreatingDate(System.currentTimeMillis() / 1000);
-        mStubTicket.setRegisteringDate(System.currentTimeMillis() / 1000);
-        mStubTicket.setDeadlineDate(System.currentTimeMillis() / 1000);
-        mStubTicket.setStatus("Status");
-        mStubTicket.setDescription("body");
     }
 
-    public static TicketRepository getInstance(EContactApiService apiService, ITicketStorage ticketStorage) {
+    public static TicketRepository getInstance(EContactApiService apiService,
+                                               ITicketRepository localTicketRepository,
+                                               ITicketStorage ticketStorage) {
         if (INSTANCE == null) {
             synchronized (TicketRepository.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new TicketRepository(apiService, ticketStorage);
+                    INSTANCE = new TicketRepository(apiService, localTicketRepository, ticketStorage);
                 }
             }
         }
@@ -57,16 +52,31 @@ public class TicketRepository implements ITicketRepository {
 
     @Override
     public Observable<List<Ticket>> getTickets(String ticketStatus) {
+        Observable<List<TicketEntity>> remote;
         if (ticketStatus == null) {
-            return mApiService.getTickets().map(getTicketMappingFunc()).doOnError(logOnErrorAction());
+            remote = mApiService.getTickets();
         } else {
-            return mApiService.getTickets(ticketStatus).map(getTicketMappingFunc())
-                    .doOnError(logOnErrorAction());
+            remote = mApiService.getTickets(ticketStatus);
         }
+        Observable<List<Ticket>> local;
+        if (ticketStatus == null) {
+            local = mLocalTicketRepository.getTickets();
+        } else {
+            local = mLocalTicketRepository.getTickets(ticketStatus);
+        }
+        return Observable.merge(
+                local, remote.map(getTicketsMappingFunc())
+                        .doOnNext(new Action1<List<Ticket>>() {
+                                      @Override
+                                      public void call(List<Ticket> tickets) {
+                                          mTicketStorage.putTickets(tickets);
+                                      }
+                                  }
+                        )).doOnError(logOnErrorAction());
     }
 
     @NonNull
-    private Func1<List<TicketEntity>, List<Ticket>> getTicketMappingFunc() {
+    private Func1<List<TicketEntity>, List<Ticket>> getTicketsMappingFunc() {
         return new Func1<List<TicketEntity>, List<Ticket>>() {
             @Override
             public List<Ticket> call(List<TicketEntity> ticketEntities) {
@@ -81,7 +91,8 @@ public class TicketRepository implements ITicketRepository {
 
     @Override
     public Observable<Ticket> getTicket(int ticketId) {
-        return Observable.just(mStubTicket);
+        return mLocalTicketRepository.getTicket(ticketId)
+                .doOnError(logOnErrorAction());
     }
 
     @NonNull
