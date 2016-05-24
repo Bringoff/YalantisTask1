@@ -23,7 +23,7 @@ public class DetailsPresenter implements DetailsMVP.Presenter {
     private Ticket mTicket;
 
     public DetailsPresenter(int ticketId) {
-        mTicketRepository = Injection.provideTicketRepository();
+        mTicketRepository = Injection.provideTicketRepository(getView().getContext());
         mCompositeSubscription = new CompositeSubscription();
         mTicketId = ticketId;
     }

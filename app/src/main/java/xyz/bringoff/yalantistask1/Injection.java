@@ -1,7 +1,12 @@
 package xyz.bringoff.yalantistask1;
 
+import android.content.Context;
+
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.TicketRepository;
+import xyz.bringoff.yalantistask1.data.local.db.DbOpenHelper;
+import xyz.bringoff.yalantistask1.data.local.db.ITicketStorage;
+import xyz.bringoff.yalantistask1.data.local.db.TicketStorage;
 import xyz.bringoff.yalantistask1.data.remote.EContactApiFactory;
 import xyz.bringoff.yalantistask1.data.remote.EContactApiService;
 import xyz.bringoff.yalantistask1.utils.popup.PopupInformer;
@@ -14,16 +19,22 @@ public class Injection {
         return PresenterHolder.getInstance();
     }
 
-    public static ITicketRepository provideTicketRepository() {
-        TicketRepository repository = TicketRepository.getInstance();
-        if (repository.getApiService() == null) {
-            repository.setApiService(provideEContactApiService());
-        }
+    public static ITicketRepository provideTicketRepository(Context context) {
+        TicketRepository repository = TicketRepository.getInstance(
+                provideEContactApiService(), provideTicketStorage(provideDbHelper(context)));
         return repository;
     }
 
     public static EContactApiService provideEContactApiService() {
         return EContactApiFactory.getEContactApiService();
+    }
+
+    public static DbOpenHelper provideDbHelper(Context context) {
+        return new DbOpenHelper(context);
+    }
+
+    public static ITicketStorage provideTicketStorage(DbOpenHelper openHelper) {
+        return new TicketStorage(openHelper);
     }
 
     public static PopupInformer provideToastInformer() {

@@ -23,7 +23,7 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     public TicketsPresenter(String ticketsStatus) {
         mTicketsStatus = ticketsStatus;
         mCompositeSubscription = new CompositeSubscription();
-        mTicketRepository = Injection.provideTicketRepository();
+        mTicketRepository = Injection.provideTicketRepository(getView().getContext());
     }
 
     public TicketsMVP.View getView() {

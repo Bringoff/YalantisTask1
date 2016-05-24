@@ -13,11 +13,9 @@ import android.widget.ProgressBar;
 import java.util.List;
 
 import butterknife.BindView;
-import rx.subscriptions.CompositeSubscription;
 import xyz.bringoff.yalantistask1.Injection;
 import xyz.bringoff.yalantistask1.PresenterHolder;
 import xyz.bringoff.yalantistask1.R;
-import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.ui.base.BaseFragment;
 import xyz.bringoff.yalantistask1.ui.details.DetailsActivity;
@@ -39,9 +37,6 @@ public class TicketsFragment extends BaseFragment
     private TicketRecyclerAdapter mAdapter;
 
     private PopupInformer mPopupInformer;
-
-    private ITicketRepository mTicketRepository;
-    private CompositeSubscription mCompositeSubscription;
 
     private TicketsMVP.Presenter mPresenter;
     private PresenterHolder mPresenterHolder;
@@ -66,8 +61,6 @@ public class TicketsFragment extends BaseFragment
                     "This fragment requires tickets status as one of its arguments");
         }
 
-        mTicketRepository = Injection.provideTicketRepository();
-        mCompositeSubscription = new CompositeSubscription();
         mPresenterHolder = Injection.providePresenterHolder();
 
         mPopupInformer = Injection.provideSnackbarInformer();

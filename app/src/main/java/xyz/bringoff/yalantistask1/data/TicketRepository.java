@@ -9,6 +9,7 @@ import java.util.List;
 import rx.Observable;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import xyz.bringoff.yalantistask1.data.local.db.ITicketStorage;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.data.model.TicketMapper;
 import xyz.bringoff.yalantistask1.data.remote.EContactApiService;
@@ -21,10 +22,14 @@ public class TicketRepository implements ITicketRepository {
     private static TicketRepository INSTANCE = null;
 
     private EContactApiService mApiService;
+    private ITicketStorage mTicketStorage;
 
     private Ticket mStubTicket;
 
-    private TicketRepository() {
+    private TicketRepository(EContactApiService apiService, ITicketStorage ticketStorage) {
+        mApiService = apiService;
+        mTicketStorage = ticketStorage;
+
         mStubTicket = new Ticket();
         mStubTicket.setId(123);
         mStubTicket.setCreatingDate(System.currentTimeMillis() / 1000);
@@ -34,23 +39,15 @@ public class TicketRepository implements ITicketRepository {
         mStubTicket.setDescription("body");
     }
 
-    public static TicketRepository getInstance() {
+    public static TicketRepository getInstance(EContactApiService apiService, ITicketStorage ticketStorage) {
         if (INSTANCE == null) {
             synchronized (TicketRepository.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new TicketRepository();
+                    INSTANCE = new TicketRepository(apiService, ticketStorage);
                 }
             }
         }
         return INSTANCE;
-    }
-
-    public EContactApiService getApiService() {
-        return mApiService;
-    }
-
-    public void setApiService(EContactApiService apiService) {
-        mApiService = apiService;
     }
 
     @Override
