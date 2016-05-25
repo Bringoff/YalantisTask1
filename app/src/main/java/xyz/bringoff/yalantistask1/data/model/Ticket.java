@@ -8,11 +8,14 @@ import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
 public class Ticket {
 
     public static final String STATUS_IN_PROGRESS = "in_progress";
+    public static final int[] STATUS_IN_PROGRESS_IDS = {0, 9, 5, 7, 8};
     public static final String STATUS_DONE = "done";
+    public static final int[] STATUS_DONE_IDS = {10, 6};
     public static final String STATUS_PENDING = "pending";
+    public static final int[] STATUS_PENDING_IDS = {1, 3, 4};
 
     private int mId;
-    private String mStatus;
+    private String mStatusName;
     private String mType;
     private String mDescription;
     private String mAddress;
@@ -32,12 +35,12 @@ public class Ticket {
         mId = id;
     }
 
-    public String getStatus() {
-        return mStatus;
+    public String getStatusName() {
+        return mStatusName;
     }
 
-    public void setStatus(String status) {
-        mStatus = status;
+    public void setStatusName(String statusName) {
+        mStatusName = statusName;
     }
 
     public String getType() {
@@ -134,7 +137,7 @@ public class Ticket {
     public String toString() {
         return "Ticket{" +
                 "mId=" + mId +
-                ", mStatus='" + mStatus + '\'' +
+                ", mStatusName='" + mStatusName + '\'' +
                 ", mType='" + mType + '\'' +
                 ", mDescription='" + mDescription + '\'' +
                 ", mAddress='" + mAddress + '\'' +

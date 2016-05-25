@@ -122,7 +122,7 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
     @Override
     public void showTicket(Ticket ticket) {
         mTypeTextView.setText(ticket.getType());
-        mStatusTextView.setText(ticket.getStatus());
+        mStatusTextView.setText(ticket.getStatusName());
         mCreatedView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getCreatingDate()));
         mRegisteredView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getRegisteringDate()));
         mSolveToView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getDeadlineDate()));

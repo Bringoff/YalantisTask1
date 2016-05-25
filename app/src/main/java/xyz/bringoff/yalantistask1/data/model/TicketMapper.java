@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
 import xyz.bringoff.yalantistask1.data.remote.entity.AddressEntity;
 import xyz.bringoff.yalantistask1.data.remote.entity.TicketEntity;
 
@@ -35,20 +34,7 @@ public class TicketMapper {
         Ticket model = new Ticket();
 
         model.setId(ticketEntity.getId());
-        switch (ticketEntity.getState().getName()) {
-            case ApiConstants.TicketStateFilter.IN_PROGRESS:
-                model.setStatus(Ticket.STATUS_IN_PROGRESS);
-                break;
-            case ApiConstants.TicketStateFilter.DONE:
-                model.setStatus(Ticket.STATUS_DONE);
-                break;
-            case ApiConstants.TicketStateFilter.PENDING:
-                model.setStatus(Ticket.STATUS_PENDING);
-                break;
-            default:
-                model.setStatus("");
-                break;
-        }
+        model.setStatusName(ticketEntity.getState().getName());
         model.setType(ticketEntity.getType().getName());
         model.setDescription(ticketEntity.getBody());
 
@@ -78,7 +64,7 @@ public class TicketMapper {
         Ticket model = new Ticket();
 
         model.setId(cursor.getInt(cursor.getColumnIndex(_ID)));
-        model.setStatus(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)));
+        model.setStatusName(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)));
         model.setType(cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)));
         model.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
         model.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
@@ -107,7 +93,7 @@ public class TicketMapper {
         ContentValues cv = new ContentValues();
 
         cv.put(_ID, model.getId());
-        cv.put(COLUMN_STATUS, model.getStatus());
+        cv.put(COLUMN_STATUS, model.getStatusName());
         cv.put(COLUMN_TYPE, model.getType());
         cv.put(COLUMN_DESCRIPTION, model.getDescription());
         cv.put(COLUMN_ADDRESS, model.getAddress());
