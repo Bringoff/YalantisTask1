@@ -4,14 +4,26 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DbOpenHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
 
     public static final String DROP_TABLE_QUERY = "drop table if exists %s";
     private static final String DB_NAME = "yalantis.db";
     private static final int DB_VERSION = 1;
+    private static volatile DbHelper INSTANCE = null;
 
-    public DbOpenHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+    private DbHelper(Context context) {
+        super(context.getApplicationContext(), DB_NAME, null, DB_VERSION);
+    }
+
+    public static DbHelper getInstance(Context context) {
+        if (INSTANCE == null) {
+            synchronized (DbHelper.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new DbHelper(context);
+                }
+            }
+        }
+        return INSTANCE;
     }
 
     @Override

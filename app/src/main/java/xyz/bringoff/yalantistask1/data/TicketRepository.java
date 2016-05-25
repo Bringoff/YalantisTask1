@@ -21,13 +21,13 @@ public class TicketRepository implements ITicketRepository {
 
     private static final String TAG = "TicketRepository";
 
-    private static TicketRepository INSTANCE = null;
+    private static volatile TicketRepository INSTANCE = null;
 
     private EContactApiService mApiService;
     private ITicketStorage mTicketStorage;
     private ITicketRepository mLocalTicketRepository;
 
-    private TicketRepository(EContactApiService apiService, ITicketRepository localTicketRepository,
+    public TicketRepository(EContactApiService apiService, ITicketRepository localTicketRepository,
                              ITicketStorage ticketStorage) {
         mApiService = apiService;
         mLocalTicketRepository = localTicketRepository;
@@ -56,20 +56,8 @@ public class TicketRepository implements ITicketRepository {
     public Observable<List<Ticket>> getTickets(String ticketStatus) {
         String apiTicketStatus = getApiStatus(ticketStatus);
 
-        Observable<List<TicketEntity>> remote;
-        if (apiTicketStatus == null) {
-            remote = mApiService.getTickets();
-        } else {
-            remote = mApiService.getTickets(apiTicketStatus);
-        }
-        Observable<List<Ticket>> local;
-        if (apiTicketStatus == null) {
-            local = mLocalTicketRepository.getTickets();
-        } else {
-            local = mLocalTicketRepository.getTickets(apiTicketStatus);
-        }
-        return Observable.merge(
-                local, remote.map(getTicketsMappingFunc())
+        return Observable.merge(mLocalTicketRepository.getTickets(apiTicketStatus),
+                mApiService.getTickets(apiTicketStatus).map(getTicketsMappingFunc())
                         .doOnNext(new Action1<List<Ticket>>() {
                                       @Override
                                       public void call(List<Ticket> tickets) {

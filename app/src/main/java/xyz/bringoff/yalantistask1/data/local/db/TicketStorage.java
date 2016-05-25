@@ -17,7 +17,7 @@ public class TicketStorage implements ITicketStorage {
 
     private final BriteDatabase mDatabase;
 
-    public TicketStorage(DbOpenHelper openHelper) {
+    public TicketStorage(DbHelper openHelper) {
         SqlBrite sqlBrite = SqlBrite.create();
         mDatabase = sqlBrite.wrapDatabaseHelper(openHelper, Schedulers.io());
     }

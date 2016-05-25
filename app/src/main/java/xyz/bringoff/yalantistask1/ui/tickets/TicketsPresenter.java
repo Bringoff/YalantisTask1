@@ -3,8 +3,8 @@ package xyz.bringoff.yalantistask1.ui.tickets;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
@@ -45,6 +45,9 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     }
 
     private void showTickets() {
+        if (getView() == null) {
+            return;
+        }
         getView().hideProgress();
         getView().showTickets(mTickets);
     }
@@ -53,16 +56,21 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
         mCompositeSubscription.add(mTicketRepository.getTickets(mTicketsStatus)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<Ticket>>() {
+                .subscribe(new Observer<List<Ticket>>() {
                     @Override
-                    public void call(List<Ticket> tickets) {
+                    public void onCompleted() {
+                        getView().hideProgress();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().showError(e);
+                    }
+
+                    @Override
+                    public void onNext(List<Ticket> tickets) {
                         mTickets = tickets;
                         showTickets();
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        getView().showError(throwable);
                     }
                 }));
     }
