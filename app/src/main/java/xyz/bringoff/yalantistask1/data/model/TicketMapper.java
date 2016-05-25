@@ -57,6 +57,11 @@ public class TicketMapper {
         model.setRegisteringDate(ticketEntity.getStartDate());
         model.setDeadlineDate(ticketEntity.getDeadline());
         model.setLikesCount(ticketEntity.getLikesCounter());
+        List<String> imageNames = new ArrayList<>();
+        for (TicketEntity.File imageFile : ticketEntity.getFiles()) {
+            imageNames.add(imageFile.getFilename());
+        }
+        model.setImageNames(imageNames);
         return model;
     }
 
