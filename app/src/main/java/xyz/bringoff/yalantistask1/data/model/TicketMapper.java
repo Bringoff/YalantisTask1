@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
 import xyz.bringoff.yalantistask1.data.remote.entity.AddressEntity;
 import xyz.bringoff.yalantistask1.data.remote.entity.TicketEntity;
 
@@ -28,20 +29,20 @@ import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable._ID;
 
 public class TicketMapper {
 
-    private static final String LOG_TAG = "TicketMapper";
+    private static final String TAG = "TicketMapper";
 
     public static Ticket fromEntity(TicketEntity ticketEntity) {
         Ticket model = new Ticket();
 
         model.setId(ticketEntity.getId());
         switch (ticketEntity.getState().getName()) {
-            case "0,9,5,7,8":
+            case ApiConstants.TicketStateFilter.IN_PROGRESS:
                 model.setStatus(Ticket.STATUS_IN_PROGRESS);
                 break;
-            case "10,6":
+            case ApiConstants.TicketStateFilter.DONE:
                 model.setStatus(Ticket.STATUS_DONE);
                 break;
-            case "1,3,4":
+            case ApiConstants.TicketStateFilter.PENDING:
                 model.setStatus(Ticket.STATUS_PENDING);
                 break;
             default:
@@ -53,7 +54,8 @@ public class TicketMapper {
 
         AddressEntity address = ticketEntity.getUserEntity().getAddressEntity();
         model.setAddress(String.format("%1$s, %2%s, %3$s, %4$s",
-                address.getCity(), address.getDistrict(), address.getStreet(), address.getHouse()));
+                address.getCity().getName(), address.getDistrict().getName(),
+                address.getStreet().getName(), address.getHouse().getName()));
 
         StringBuilder responsible = new StringBuilder();
         List<TicketEntity.Performer> performers = ticketEntity.getPerformers();
@@ -94,7 +96,7 @@ public class TicketMapper {
             }
             model.setImageNames(names);
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Log.e(TAG, e.getMessage(), e);
             model.setImageNames(new ArrayList<String>());
         }
 
@@ -118,7 +120,7 @@ public class TicketMapper {
             cv.put(COLUMN_IMAGE_NAMES, new JSONObject()
                     .put(COLUMN_IMAGE_NAMES, new JSONArray(model.getImageNames())).toString());
         } catch (JSONException e) {
-            Log.e(LOG_TAG, e.getMessage(), e);
+            Log.e(TAG, e.getMessage(), e);
             cv.put(COLUMN_IMAGE_NAMES, "");
         }
         return cv;
