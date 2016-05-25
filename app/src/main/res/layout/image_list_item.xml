@@ -4,7 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/list_item_image_size"
     android:layout_height="@dimen/list_item_image_size"
-    android:contentDescription="@string/image_view_content_description"
-    android:onClick="onEveryClick">
+    android:contentDescription="@string/image_view_content_description">
 
 </ImageView>
