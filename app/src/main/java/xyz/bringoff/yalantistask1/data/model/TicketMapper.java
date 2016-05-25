@@ -53,9 +53,9 @@ public class TicketMapper {
         model.setDescription(ticketEntity.getBody());
 
         AddressEntity address = ticketEntity.getUserEntity().getAddressEntity();
-        model.setAddress(String.format("%1$s, %2%s, %3$s, %4$s",
-                address.getCity().getName(), address.getDistrict().getName(),
-                address.getStreet().getName(), address.getHouse().getName()));
+        model.setAddress(String.format("%1$s, %2$s, %3$s",
+                address.getCity().getName(), address.getStreet().getName(),
+                address.getHouse().getName()));
 
         StringBuilder responsible = new StringBuilder();
         List<TicketEntity.Performer> performers = ticketEntity.getPerformers();
