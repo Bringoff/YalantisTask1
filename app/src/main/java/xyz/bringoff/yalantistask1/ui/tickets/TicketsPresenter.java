@@ -1,6 +1,9 @@
 package xyz.bringoff.yalantistask1.ui.tickets;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
@@ -11,6 +14,8 @@ import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 
 public class TicketsPresenter implements TicketsMVP.Presenter {
+
+    private static final String TAG = "TicketsPresenter";
 
     private WeakReference<TicketsMVP.View> mView;
     private CompositeSubscription mCompositeSubscription;
@@ -24,6 +29,8 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
         mTicketsStatusIdName = ticketsStatusIdName;
         mCompositeSubscription = new CompositeSubscription();
         mTicketRepository = ticketRepository;
+
+        mTickets = new ArrayList<>();
     }
 
     public TicketsMVP.View getView() {
@@ -78,12 +85,17 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e(TAG, e.getMessage(), e);
                         getView().showError(e);
                     }
 
                     @Override
                     public void onNext(List<Ticket> tickets) {
-                        mTickets = tickets;
+                        for (Ticket ticket : tickets) {
+                            if (!mTickets.contains(ticket)) {
+                                mTickets.add(ticket);
+                            }
+                        }
                         showTickets();
                     }
                 }));

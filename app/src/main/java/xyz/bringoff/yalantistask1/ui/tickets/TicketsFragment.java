@@ -87,6 +87,7 @@ public class TicketsFragment extends BaseFragment
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mTicketsRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new TicketRecyclerAdapter(getActivity(), this);
+        mAdapter.setHasStableIds(true);
         mTicketsRecyclerView.setAdapter(mAdapter);
 
         mTicketsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -132,7 +133,7 @@ public class TicketsFragment extends BaseFragment
     @Override
     public void showTickets(List<Ticket> tickets) {
         mLoading = false;
-        mAdapter.addTickets(tickets);
+        mAdapter.setTickets(tickets);
     }
 
     @Override
@@ -160,7 +161,6 @@ public class TicketsFragment extends BaseFragment
 
     @Override
     public void onRefresh() {
-        mAdapter.clearTickets();
         mPresenter.onRefresh();
     }
 }
