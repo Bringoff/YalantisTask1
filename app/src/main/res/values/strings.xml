@@ -13,7 +13,7 @@
     <string name="description_stub">Opened hatch (near by the billboard), the area of 18 and 19 trams turn to the Mir avenue from the Donetsk roadway</string>
     <string name="image_view_content_description">Photo of incident</string>
     <string name="occasion_code_stub" translatable="false">CE-1257218</string>
-    <string name="days_gone_after_creation_format" translatable="false">%1$d %2$s</string>
+    <string name="days_gone_after_creation_format" translatable="false">%1$d %2$s ago</string>
     <string name="landscaping_building">Landscaping and building</string>
     <string name="other">Other</string>
     <string name="all_tickets">All tickets</string>

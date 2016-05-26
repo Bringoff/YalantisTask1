@@ -100,7 +100,9 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
         }
 
         private void setEndDate(long date) {
-            mTicketEndDateTextView.setText(DateUtils.unixToMediumDateString(mContext, date));
+            if (mTicket.getDeadlineDate() != null && mTicket.getDeadlineDate() != 0) {
+                mTicketEndDateTextView.setText(DateUtils.unixToMediumDateString(mContext, date));
+            }
         }
 
         private void setLikes(int likes) {

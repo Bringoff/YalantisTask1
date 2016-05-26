@@ -125,7 +125,9 @@ public class DetailsFragment extends BaseFragment implements DetailsMVP.View {
         mStatusTextView.setText(ticket.getStatusName());
         mCreatedView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getCreatingDate()));
         mRegisteredView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getRegisteringDate()));
-        mSolveToView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getDeadlineDate()));
+        if (ticket.getDeadlineDate() != null && ticket.getDeadlineDate() != 0) {
+            mSolveToView.setValue(DateUtils.unixToMediumDateString(getActivity(), ticket.getDeadlineDate()));
+        }
         mDescriptionTextView.setText(ticket.getDescription());
         mImagesAdapter.setUrls(ticket.getImageUrls());
     }
