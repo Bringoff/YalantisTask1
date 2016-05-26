@@ -5,6 +5,8 @@ import android.database.Cursor;
 import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import rx.Observable;
@@ -39,17 +41,22 @@ public class TicketLocalRepository implements ITicketRepository {
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets() {
+    public Observable<List<Ticket>> getTickets(int page) {
         return getTicketsRaw("SELECT * FROM " + TicketTable.TABLE_NAME);
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets(String ticketStatusIdName) {
+    public Observable<List<Ticket>> getTickets(String ticketStatusIdName, int page) {
         if (ticketStatusIdName == null) {
-            return getTickets();
+            return getTickets(page);
         }
         return getTicketsRaw("SELECT * FROM " + TicketTable.TABLE_NAME +
-                " WHERE " + TicketTable.COLUMN_STATUS_ID_NAME + " = '" + ticketStatusIdName + "'");
+                " WHERE " + TicketTable.COLUMN_STATUS_ID_NAME + " = '" + ticketStatusIdName + "' "
+                + pagingQueryPart(page));
+    }
+
+    private String pagingQueryPart(int page) {
+        return "LIMIT " + PAGE_SIZE + " OFFSET " + page * PAGE_SIZE;
     }
 
     private Observable<List<Ticket>> getTicketsRaw(String query) {
@@ -58,6 +65,20 @@ public class TicketLocalRepository implements ITicketRepository {
                     @Override
                     public Ticket call(Cursor cursor) {
                         return TicketMapper.fromCursor(cursor);
+                    }
+                }).map(new Func1<List<Ticket>, List<Ticket>>() {
+                    @Override
+                    public List<Ticket> call(List<Ticket> tickets) {
+                        List<Ticket> sorted = tickets;
+                        Collections.sort(sorted, new Comparator<Ticket>() {
+                            @Override
+                            public int compare(Ticket lhs, Ticket rhs) {
+                                return lhs.getId() < rhs.getId()
+                                        ? -1
+                                        : (lhs.getId() == rhs.getId() ? 0 : 1);
+                            }
+                        });
+                        return sorted;
                     }
                 });
 

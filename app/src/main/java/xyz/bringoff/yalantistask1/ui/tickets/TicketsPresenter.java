@@ -18,6 +18,7 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     private String mTicketsStatusIdName;
 
     private List<Ticket> mTickets;
+    private int mPage = 0;
 
     public TicketsPresenter(ITicketRepository ticketRepository, String ticketsStatusIdName) {
         mTicketsStatusIdName = ticketsStatusIdName;
@@ -44,6 +45,19 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
         }
     }
 
+    @Override
+    public void onShowMore() {
+        mPage++;
+        loadTickets();
+    }
+
+    @Override
+    public void onRefresh() {
+        mPage = 0;
+        mTickets.clear();
+        loadTickets();
+    }
+
     private void showTickets() {
         if (getView() == null) {
             return;
@@ -53,7 +67,7 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     }
 
     private void loadTickets() {
-        mCompositeSubscription.add(mTicketRepository.getTickets(mTicketsStatusIdName)
+        mCompositeSubscription.add(mTicketRepository.getTickets(mTicketsStatusIdName, mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Ticket>>() {

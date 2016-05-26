@@ -27,6 +27,10 @@ public interface TicketsMVP {
 
         void onShowTickets();
 
+        void onShowMore();
+
+        void onRefresh();
+
         void onShowTicketDetails(int ticketPosition);
     }
 }

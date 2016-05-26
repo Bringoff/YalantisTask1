@@ -49,16 +49,17 @@ public class TicketRepository implements ITicketRepository {
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets() {
-        return getTickets(null);
+    public Observable<List<Ticket>> getTickets(int page) {
+        return getTickets(null, page);
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets(String ticketStatusIdName) {
+    public Observable<List<Ticket>> getTickets(String ticketStatusIdName, int page) {
         String apiTicketStatus = getApiStatus(ticketStatusIdName);
 
-        return Observable.merge(mLocalTicketRepository.getTickets(ticketStatusIdName),
-                mApiService.getTickets(apiTicketStatus).map(getTicketsMappingFunc())
+        return Observable.merge(mLocalTicketRepository.getTickets(ticketStatusIdName, page),
+                mApiService.getTickets(apiTicketStatus, page * PAGE_SIZE, PAGE_SIZE)
+                        .map(getTicketsMappingFunc())
                         .doOnNext(new Action1<List<Ticket>>() {
                                       @Override
                                       public void call(List<Ticket> tickets) {

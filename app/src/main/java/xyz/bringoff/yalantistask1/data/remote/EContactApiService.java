@@ -10,8 +10,10 @@ import xyz.bringoff.yalantistask1.data.remote.entity.TicketEntity;
 public interface EContactApiService {
 
     @GET("tickets")
-    Observable<List<TicketEntity>> getTickets();
+    Observable<List<TicketEntity>> getTickets(
+            @Query("offset") int offset, @Query("amount") int amount);
 
     @GET("tickets")
-    Observable<List<TicketEntity>> getTickets(@Query("state") String state);
+    Observable<List<TicketEntity>> getTickets(
+            @Query("state") String state, @Query("offset") int offset, @Query("amount") int amount);
 }

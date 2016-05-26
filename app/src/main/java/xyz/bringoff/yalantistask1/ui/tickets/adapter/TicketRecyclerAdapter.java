@@ -48,6 +48,15 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
         notifyDataSetChanged();
     }
 
+    public void addTickets(List<Ticket> tickets) {
+        mTickets.addAll(tickets);
+        notifyDataSetChanged();
+    }
+
+    public void clearTickets() {
+        mTickets.clear();
+    }
+
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         private Ticket mTicket;

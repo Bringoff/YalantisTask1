@@ -27,6 +27,7 @@ public class TicketsFragment extends BaseFragment
         implements TicketsMVP.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String KEY_STATUS = "status";
+    private static final int VISIBLE_THRESHOLD = 5;
 
     @BindView(R.id.progress)
     ProgressBar mProgressBar;
@@ -40,6 +41,9 @@ public class TicketsFragment extends BaseFragment
 
     private TicketsMVP.Presenter mPresenter;
     private PresenterHolder mPresenterHolder;
+
+    private boolean mLoading;
+    private int mLastVisibleItem, mTotalItemCount;
 
     public TicketsFragment() {
     }
@@ -80,9 +84,22 @@ public class TicketsFragment extends BaseFragment
                              Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        mTicketsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mTicketsRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new TicketRecyclerAdapter(getActivity(), this);
         mTicketsRecyclerView.setAdapter(mAdapter);
+
+        mTicketsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                mTotalItemCount = layoutManager.getItemCount();
+                mLastVisibleItem = layoutManager.findLastVisibleItemPosition();
+                if (!mLoading && mTotalItemCount <= (mLastVisibleItem + VISIBLE_THRESHOLD)) {
+                    mPresenter.onShowMore();
+                    mLoading = true;
+                }
+            }
+        });
 
         mRefreshLayout.setOnRefreshListener(this);
         return view;
@@ -114,7 +131,8 @@ public class TicketsFragment extends BaseFragment
 
     @Override
     public void showTickets(List<Ticket> tickets) {
-        mAdapter.setTickets(tickets);
+        mLoading = false;
+        mAdapter.addTickets(tickets);
     }
 
     @Override
@@ -142,6 +160,7 @@ public class TicketsFragment extends BaseFragment
 
     @Override
     public void onRefresh() {
-        mPresenter.onShowTickets();
+        mAdapter.clearTickets();
+        mPresenter.onRefresh();
     }
 }
