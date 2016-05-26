@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
+import rx.exceptions.Exceptions;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import xyz.bringoff.yalantistask1.data.local.db.ITicketStorage;
@@ -28,7 +29,7 @@ public class TicketRepository implements ITicketRepository {
     private ITicketRepository mLocalTicketRepository;
 
     public TicketRepository(EContactApiService apiService, ITicketRepository localTicketRepository,
-                             ITicketStorage ticketStorage) {
+                            ITicketStorage ticketStorage) {
         mApiService = apiService;
         mLocalTicketRepository = localTicketRepository;
         mTicketStorage = ticketStorage;
@@ -53,10 +54,10 @@ public class TicketRepository implements ITicketRepository {
     }
 
     @Override
-    public Observable<List<Ticket>> getTickets(String ticketStatus) {
-        String apiTicketStatus = getApiStatus(ticketStatus);
+    public Observable<List<Ticket>> getTickets(String ticketStatusIdName) {
+        String apiTicketStatus = getApiStatus(ticketStatusIdName);
 
-        return Observable.merge(mLocalTicketRepository.getTickets(apiTicketStatus),
+        return Observable.merge(mLocalTicketRepository.getTickets(ticketStatusIdName),
                 mApiService.getTickets(apiTicketStatus).map(getTicketsMappingFunc())
                         .doOnNext(new Action1<List<Ticket>>() {
                                       @Override
@@ -64,7 +65,7 @@ public class TicketRepository implements ITicketRepository {
                                           mTicketStorage.putTickets(tickets);
                                       }
                                   }
-                        ));
+                        )).doOnError(logOnErrorAction());
     }
 
     @Nullable
@@ -109,6 +110,7 @@ public class TicketRepository implements ITicketRepository {
             @Override
             public void call(Throwable throwable) {
                 Log.e(TAG, throwable.getMessage(), throwable);
+                throw Exceptions.propagate(throwable);
             }
         };
     }

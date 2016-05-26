@@ -15,12 +15,12 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     private WeakReference<TicketsMVP.View> mView;
     private CompositeSubscription mCompositeSubscription;
     private ITicketRepository mTicketRepository;
-    private String mTicketsStatus;
+    private String mTicketsStatusIdName;
 
     private List<Ticket> mTickets;
 
-    public TicketsPresenter(ITicketRepository ticketRepository, String ticketsStatus) {
-        mTicketsStatus = ticketsStatus;
+    public TicketsPresenter(ITicketRepository ticketRepository, String ticketsStatusIdName) {
+        mTicketsStatusIdName = ticketsStatusIdName;
         mCompositeSubscription = new CompositeSubscription();
         mTicketRepository = ticketRepository;
     }
@@ -53,7 +53,7 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     }
 
     private void loadTickets() {
-        mCompositeSubscription.add(mTicketRepository.getTickets(mTicketsStatus)
+        mCompositeSubscription.add(mTicketRepository.getTickets(mTicketsStatusIdName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Ticket>>() {

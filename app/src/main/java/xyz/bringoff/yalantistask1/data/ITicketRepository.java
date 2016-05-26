@@ -11,5 +11,5 @@ public interface ITicketRepository {
 
     Observable<List<Ticket>> getTickets();
 
-    Observable<List<Ticket>> getTickets(String ticketStatus);
+    Observable<List<Ticket>> getTickets(String ticketStatusIdName);
 }

@@ -14,17 +14,18 @@ import java.util.List;
 import xyz.bringoff.yalantistask1.data.remote.entity.AddressEntity;
 import xyz.bringoff.yalantistask1.data.remote.entity.TicketEntity;
 
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_ADDRESS;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_CREATING_DATE;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_DEADLINE_DATE;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_DESCRIPTION;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_IMAGE_NAMES;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_LIKES_COUNT;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_REGISTERING_DATE;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_RESPONSIBLE;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_STATUS;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable.COLUMN_TYPE;
-import static xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable._ID;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_ADDRESS;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_CREATING_DATE;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_DEADLINE_DATE;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_DESCRIPTION;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_IMAGE_NAMES;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_LIKES_COUNT;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_REGISTERING_DATE;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_RESPONSIBLE;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_STATUS_ID_NAME;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_STATUS_NAME;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable.COLUMN_TYPE;
+import static xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable._ID;
 
 public class TicketMapper {
 
@@ -35,6 +36,25 @@ public class TicketMapper {
 
         model.setId(ticketEntity.getId());
         model.setStatusName(ticketEntity.getState().getName());
+        switch (ticketEntity.getState().getId()) {
+            case 1:
+            case 3:
+            case 4:
+                model.setStatusIdName(Ticket.STATUS_PENDING);
+                break;
+            case 6:
+            case 10:
+                model.setStatusIdName(Ticket.STATUS_DONE);
+                break;
+            case 0:
+            case 5:
+            case 7:
+            case 8:
+            case 9:
+                model.setStatusIdName(Ticket.STATUS_IN_PROGRESS);
+                break;
+
+        }
         model.setType(ticketEntity.getType().getName());
         model.setDescription(ticketEntity.getBody());
 
@@ -69,7 +89,8 @@ public class TicketMapper {
         Ticket model = new Ticket();
 
         model.setId(cursor.getInt(cursor.getColumnIndex(_ID)));
-        model.setStatusName(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)));
+        model.setStatusName(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS_NAME)));
+        model.setStatusIdName(cursor.getString(cursor.getColumnIndex(COLUMN_STATUS_ID_NAME)));
         model.setType(cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)));
         model.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
         model.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
@@ -98,7 +119,8 @@ public class TicketMapper {
         ContentValues cv = new ContentValues();
 
         cv.put(_ID, model.getId());
-        cv.put(COLUMN_STATUS, model.getStatusName());
+        cv.put(COLUMN_STATUS_NAME, model.getStatusName());
+        cv.put(COLUMN_STATUS_ID_NAME, model.getStatusIdName());
         cv.put(COLUMN_TYPE, model.getType());
         cv.put(COLUMN_DESCRIPTION, model.getDescription());
         cv.put(COLUMN_ADDRESS, model.getAddress());

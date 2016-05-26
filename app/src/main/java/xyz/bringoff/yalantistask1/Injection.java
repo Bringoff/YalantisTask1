@@ -5,7 +5,7 @@ import android.content.Context;
 import xyz.bringoff.yalantistask1.data.ITicketRepository;
 import xyz.bringoff.yalantistask1.data.TicketRepository;
 import xyz.bringoff.yalantistask1.data.local.TicketLocalRepository;
-import xyz.bringoff.yalantistask1.data.local.db.DbHelper;
+import xyz.bringoff.yalantistask1.data.local.db.DatabaseHelper;
 import xyz.bringoff.yalantistask1.data.local.db.ITicketStorage;
 import xyz.bringoff.yalantistask1.data.local.db.TicketStorage;
 import xyz.bringoff.yalantistask1.data.remote.EContactApiFactory;
@@ -31,15 +31,15 @@ public class Injection {
         return EContactApiFactory.getEContactApiService();
     }
 
-    public static DbHelper provideDbHelper(Context context) {
-        return DbHelper.getInstance(context);
+    public static DatabaseHelper provideDbHelper(Context context) {
+        return DatabaseHelper.getInstance(context);
     }
 
-    public static ITicketRepository provideLocalTicketRepository(DbHelper openHelper) {
+    public static ITicketRepository provideLocalTicketRepository(DatabaseHelper openHelper) {
         return new TicketLocalRepository(openHelper);
     }
 
-    public static ITicketStorage provideTicketStorage(DbHelper openHelper) {
+    public static ITicketStorage provideTicketStorage(DatabaseHelper openHelper) {
         return new TicketStorage(openHelper);
     }
 

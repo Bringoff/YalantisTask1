@@ -9,7 +9,7 @@ import com.squareup.sqlbrite.SqlBrite;
 import java.util.List;
 
 import rx.schedulers.Schedulers;
-import xyz.bringoff.yalantistask1.data.local.db.DbScheme.TicketTable;
+import xyz.bringoff.yalantistask1.data.local.db.DatabaseScheme.TicketTable;
 import xyz.bringoff.yalantistask1.data.model.Ticket;
 import xyz.bringoff.yalantistask1.data.model.TicketMapper;
 
@@ -17,7 +17,7 @@ public class TicketStorage implements ITicketStorage {
 
     private final BriteDatabase mDatabase;
 
-    public TicketStorage(DbHelper openHelper) {
+    public TicketStorage(DatabaseHelper openHelper) {
         SqlBrite sqlBrite = SqlBrite.create();
         mDatabase = sqlBrite.wrapDatabaseHelper(openHelper, Schedulers.io());
     }

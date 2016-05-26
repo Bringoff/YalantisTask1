@@ -16,6 +16,7 @@ public class Ticket {
 
     private int mId;
     private String mStatusName;
+    private String mStatusIdName;
     private String mType;
     private String mDescription;
     private String mAddress;
@@ -41,6 +42,14 @@ public class Ticket {
 
     public void setStatusName(String statusName) {
         mStatusName = statusName;
+    }
+
+    public String getStatusIdName() {
+        return mStatusIdName;
+    }
+
+    public void setStatusIdName(String statusIdName) {
+        mStatusIdName = statusIdName;
     }
 
     public String getType() {
