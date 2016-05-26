@@ -155,6 +155,57 @@ public class Ticket {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        if (mId != ticket.mId) return false;
+        if (mStatusName != null ? !mStatusName.equals(ticket.mStatusName) : ticket.mStatusName != null)
+            return false;
+        if (mStatusIdName != null ? !mStatusIdName.equals(ticket.mStatusIdName) : ticket.mStatusIdName != null)
+            return false;
+        if (mType != null ? !mType.equals(ticket.mType) : ticket.mType != null) return false;
+        if (mDescription != null ? !mDescription.equals(ticket.mDescription) : ticket.mDescription != null)
+            return false;
+        if (mAddress != null ? !mAddress.equals(ticket.mAddress) : ticket.mAddress != null)
+            return false;
+        if (mResponsible != null ? !mResponsible.equals(ticket.mResponsible) : ticket.mResponsible != null)
+            return false;
+        if (mCreatingDate != null ? !mCreatingDate.equals(ticket.mCreatingDate) : ticket.mCreatingDate != null)
+            return false;
+        if (mRegisteringDate != null ? !mRegisteringDate.equals(ticket.mRegisteringDate) : ticket.mRegisteringDate != null)
+            return false;
+        if (mDeadlineDate != null ? !mDeadlineDate.equals(ticket.mDeadlineDate) : ticket.mDeadlineDate != null)
+            return false;
+        if (mLikesCount != null ? !mLikesCount.equals(ticket.mLikesCount) : ticket.mLikesCount != null)
+            return false;
+        if (mImageNames != null ? !mImageNames.equals(ticket.mImageNames) : ticket.mImageNames != null)
+            return false;
+        return !(mImageUrls != null ? !mImageUrls.equals(ticket.mImageUrls) : ticket.mImageUrls != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mId;
+        result = 31 * result + (mStatusName != null ? mStatusName.hashCode() : 0);
+        result = 31 * result + (mStatusIdName != null ? mStatusIdName.hashCode() : 0);
+        result = 31 * result + (mType != null ? mType.hashCode() : 0);
+        result = 31 * result + (mDescription != null ? mDescription.hashCode() : 0);
+        result = 31 * result + (mAddress != null ? mAddress.hashCode() : 0);
+        result = 31 * result + (mResponsible != null ? mResponsible.hashCode() : 0);
+        result = 31 * result + (mCreatingDate != null ? mCreatingDate.hashCode() : 0);
+        result = 31 * result + (mRegisteringDate != null ? mRegisteringDate.hashCode() : 0);
+        result = 31 * result + (mDeadlineDate != null ? mDeadlineDate.hashCode() : 0);
+        result = 31 * result + (mLikesCount != null ? mLikesCount.hashCode() : 0);
+        result = 31 * result + (mImageNames != null ? mImageNames.hashCode() : 0);
+        result = 31 * result + (mImageUrls != null ? mImageUrls.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Ticket{" +
                 "mId=" + mId +
