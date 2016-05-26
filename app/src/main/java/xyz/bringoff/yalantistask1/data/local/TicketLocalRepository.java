@@ -6,7 +6,6 @@ import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import rx.Observable;
@@ -69,16 +68,8 @@ public class TicketLocalRepository implements ITicketRepository {
                 }).map(new Func1<List<Ticket>, List<Ticket>>() {
                     @Override
                     public List<Ticket> call(List<Ticket> tickets) {
-                        List<Ticket> sorted = tickets;
-                        Collections.sort(sorted, new Comparator<Ticket>() {
-                            @Override
-                            public int compare(Ticket lhs, Ticket rhs) {
-                                return lhs.getId() < rhs.getId()
-                                        ? -1
-                                        : (lhs.getId() == rhs.getId() ? 0 : 1);
-                            }
-                        });
-                        return sorted;
+                        Collections.sort(tickets, Ticket.getComparator());
+                        return tickets;
                     }
                 });
 

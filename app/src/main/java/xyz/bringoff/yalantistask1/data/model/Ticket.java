@@ -1,6 +1,7 @@
 package xyz.bringoff.yalantistask1.data.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import xyz.bringoff.yalantistask1.data.remote.ApiConstants;
@@ -27,6 +28,17 @@ public class Ticket {
     private Integer mLikesCount;
     private List<String> mImageNames;
     private List<String> mImageUrls;
+
+    public static Comparator<Ticket> getComparator() {
+        return new Comparator<Ticket>() {
+            @Override
+            public int compare(Ticket lhs, Ticket rhs) {
+                return lhs.getId() < rhs.getId()
+                        ? -1
+                        : (lhs.getId() == rhs.getId() ? 0 : 1);
+            }
+        };
+    }
 
     public int getId() {
         return mId;
