@@ -60,6 +60,7 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
         private TextView mTicketBeginDateDiffTextView;
         private TextView mLikesTextView;
 
+        @SuppressWarnings("deprecation")
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +70,7 @@ public class TicketRecyclerAdapter extends RecyclerView.Adapter<TicketRecyclerAd
                 }
             });
             mTicketTypeImageView = (ImageView) itemView.findViewById(R.id.ticket_type_icon_image_view);
+            mTicketTypeImageView.setImageDrawable(itemView.getContext().getResources().getDrawable(R.drawable.ic_doc));
             mTicketTypeTextView = (TextView) itemView.findViewById(R.id.ticket_type_text_view);
             mTicketAddressTextView = (TextView) itemView.findViewById(R.id.ticket_address_text_view);
             mTicketEndDateTextView = (TextView) itemView.findViewById(R.id.ticket_due_date_text_view);

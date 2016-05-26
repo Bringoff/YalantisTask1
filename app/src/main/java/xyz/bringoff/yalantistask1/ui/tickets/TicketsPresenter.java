@@ -55,6 +55,7 @@ public class TicketsPresenter implements TicketsMVP.Presenter {
     @Override
     public void onShowMore() {
         mPage++;
+        getView().showProgress();
         loadTickets();
     }
 
